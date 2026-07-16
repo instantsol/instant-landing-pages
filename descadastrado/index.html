@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>E-mail descadastrado | Instant Solutions</title>
+  <style>
+    :root {
+      --azul: #0757b9;
+      --azul-escuro: #073a78;
+      --azul-claro: #eaf4ff;
+      --texto: #243247;
+      --texto-suave: #64748b;
+      --borda: #dbe7f3;
+      --fundo: #f4f8fc;
+      --branco: #ffffff;
+      --sucesso: #16a36a;
+      --sombra: 0 18px 45px rgba(23, 55, 94, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at top left, rgba(0, 125, 255, 0.10), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, var(--fundo) 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .panel {
+      overflow: hidden;
+      background: var(--branco);
+      border: 1px solid rgba(219, 231, 243, 0.9);
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: center;
+      padding: 26px 24px;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .main-logo {
+      width: 220px;
+      max-width: 72vw;
+      height: auto;
+      display: block;
+    }
+
+    .hero {
+      padding: 54px 28px 36px;
+      text-align: center;
+    }
+
+    .success-icon {
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      color: var(--branco);
+      background: var(--sucesso);
+      box-shadow: 0 12px 26px rgba(22, 163, 106, 0.22);
+    }
+
+    .success-icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0 auto 14px;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--azul-escuro);
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--texto-suave);
+    }
+
+    .solutions {
+      padding: 14px 28px 52px;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin: 0 auto 26px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3vw, 30px);
+      color: var(--azul-escuro);
+    }
+
+    .section-heading p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--texto-suave);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 26px 20px 22px;
+      text-align: center;
+      text-decoration: none;
+      background: #fbfdff;
+      border: 1px solid var(--borda);
+      border-radius: 18px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-4px);
+      border-color: #a9cbea;
+      box-shadow: 0 14px 30px rgba(28, 78, 121, 0.12);
+      outline: none;
+    }
+
+    .logo-wrap {
+      min-height: 84px;
+      display: grid;
+      place-items: center;
+    }
+
+    .product-logo {
+      display: block;
+      max-width: 150px;
+      max-height: 76px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      color: var(--azul-escuro);
+    }
+
+    .card p {
+      margin: 0;
+      min-height: 58px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--texto-suave);
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul);
+    }
+
+    .footer {
+      padding: 24px;
+      text-align: center;
+      background: #f7faff;
+      border-top: 1px solid #e8f0f7;
+      color: var(--texto-suave);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer a {
+      font-weight: 700;
+      color: var(--azul);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding: 18px 0;
+      }
+
+      .panel {
+        border-radius: 18px;
+      }
+
+      .topbar {
+        padding: 20px;
+      }
+
+      .hero {
+        padding: 38px 20px 28px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .solutions {
+        padding: 10px 16px 34px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      .card p {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="panel" aria-labelledby="page-title">
+      <header class="topbar">
+        <a href="https://www.instant.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Acessar o site da Instant Solutions">
+          <img
+            class="main-logo"
+            src="https://www.instant.com.br/wp-content/uploads/logo_instant.png"
+            alt="Instant Solutions"
+          >
+        </a>
+      </header>
+
+      <div class="hero">
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h1 id="page-title">Seu e-mail foi descadastrado com sucesso.</h1>
+        <p class="lead">
+          Você não receberá mais comunicações desta lista. Agradecemos pelo período em que esteve conosco.
+          Quando desejar, nossos canais e soluções continuarão disponíveis para você.
+        </p>
+      </div>
+
+      <section class="solutions" aria-labelledby="solutions-title">
+        <div class="section-heading">
+          <h2 id="solutions-title">Conheça as plataformas da Instant</h2>
+          <p>Acesse diretamente a solução mais relacionada às necessidades da sua empresa.</p>
+        </div>
+
+        <div class="grid">
+          <a class="card" href="https://landing.kwik.app.br/" target="_blank" rel="noopener noreferrer">
+            <div class="logo-wrap">
+              <img
+                class="product-logo"
+                src="https://www.instant.com.br/wp-content/uploads/Marca-Kwik_Colorido-2-2.png"
+                alt="Kwik"
+              >
+            </div>
+            <div>
+              <h3>Kwik</h3>
+              <p>Atendimento omnichannel, CRM, vendas, campanhas e automações em uma única plataforma.</p>
+            </div>
+            <span class="card-cta">Conhecer a plataforma <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="card" href="https://landing.instant.com.br/instant-cloud-voice/" target="_blank" rel="noopener noreferrer">
+            <div class="logo-wrap">
+              <img
+                class="product-logo"
+                src="https://www.instant.com.br/wp-content/uploads/Prancheta-7-copia@2x.png"
+                alt="InstantVoice"
+              >
+            </div>
+            <div>
+              <h3>InstantVoice</h3>
+              <p>Telefonia corporativa em nuvem, PABX, Contact Center, URA, gravação e relatórios.</p>
+            </div>
+            <span class="card-cta">Conhecer a plataforma <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="card" href="https://scout.kwik.app.br/" target="_blank" rel="noopener noreferrer">
+            <div class="logo-wrap">
+              <img
+                class="product-logo"
+                src="https://www.instant.com.br/wp-content/uploads/Copia-de-Kwik-Scout-Colorido-1-1.png"
+                alt="Kwik Scout"
+              >
+            </div>
+            <div>
+              <h3>Kwik Scout</h3>
+              <p>Monitoria, governança e auditoria das conversas realizadas no WhatsApp corporativo.</p>
+            </div>
+            <span class="card-cta">Conhecer a plataforma <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="card" href="https://cortex.instant.com.br" target="_blank" rel="noopener noreferrer">
+            <div class="logo-wrap">
+              <img
+                class="product-logo"
+                src="https://www.instant.com.br/wp-content/uploads/estudiotorocortex_marca_vertical_2.png"
+                alt="Córtex"
+              >
+            </div>
+            <div>
+              <h3>Córtex</h3>
+              <p>Inteligência artificial generativa aplicada ao atendimento, suporte, vendas e automação.</p>
+            </div>
+            <span class="card-cta">Conhecer a plataforma <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>Instant Solutions — Tecnologia para comunicação, atendimento e automação.</div>
+        <a href="https://www.instant.com.br/" target="_blank" rel="noopener noreferrer">www.instant.com.br</a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
