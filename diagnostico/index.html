@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Diagnóstico gratuito de maturidade em atendimento, vendas, telefonia, WhatsApp e inteligência artificial da Instant Solutions.">
+  <title>Diagnóstico de Maturidade Digital | Instant Solutions</title>
+
+  <style>
+    :root{
+      --blue:#0759b7;
+      --blue-2:#0b79d0;
+      --cyan:#22b8e8;
+      --navy:#082a55;
+      --ink:#15324f;
+      --muted:#60758a;
+      --line:#dce8f3;
+      --soft:#f4f9fd;
+      --white:#ffffff;
+      --green:#14804a;
+      --amber:#b46900;
+      --red:#b42318;
+      --shadow:0 18px 55px rgba(8,42,85,.12);
+      --shadow-sm:0 10px 30px rgba(8,42,85,.09);
+      --radius:20px;
+      --radius-sm:13px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--white);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.55;
+    }
+    button,input,select,textarea{font:inherit}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(calc(100% - 36px), var(--max));margin-inline:auto}
+    .eyebrow{
+      margin:0 0 10px;
+      font-size:.77rem;
+      line-height:1.2;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--blue);
+    }
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      margin-bottom:22px;
+      color:var(--navy);
+      font-size:clamp(2.45rem, 6vw, 5rem);
+      line-height:.98;
+      letter-spacing:-.055em;
+    }
+    h2{
+      margin-bottom:12px;
+      color:var(--navy);
+      font-size:clamp(1.85rem, 3.5vw, 3rem);
+      line-height:1.06;
+      letter-spacing:-.035em;
+    }
+    h3{color:var(--navy);line-height:1.2}
+    .muted{color:var(--muted)}
+    .gradient-text{
+      color:var(--blue);
+      background:linear-gradient(110deg,var(--blue),var(--cyan));
+      background-clip:text;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid rgba(220,232,243,.85);
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(15px);
+    }
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:168px;height:auto}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .nav-link{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:700;
+      font-size:.92rem;
+    }
+
+    .btn{
+      min-height:46px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:0 18px;
+      border:1px solid transparent;
+      border-radius:11px;
+      cursor:pointer;
+      font-weight:800;
+      text-decoration:none;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      box-shadow:0 10px 24px rgba(7,89,183,.24);
+    }
+    .btn-secondary{
+      color:var(--navy);
+      background:#fff;
+      border-color:var(--line);
+    }
+    .btn-dark{
+      color:#fff;
+      background:var(--navy);
+    }
+    .btn-block{width:100%}
+    .btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:82px 0 80px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(34,184,232,.16), transparent 32%),
+        radial-gradient(circle at 8% 12%, rgba(7,89,183,.09), transparent 26%),
+        linear-gradient(180deg,#fff 0%,#f8fbfe 100%);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-180px;
+      top:-130px;
+      width:520px;
+      height:520px;
+      border-radius:50%;
+      border:90px solid rgba(7,89,183,.035);
+    }
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      align-items:center;
+      gap:70px;
+    }
+    .hero-copy p.lead{
+      max-width:680px;
+      margin-bottom:22px;
+      font-size:1.12rem;
+      color:var(--muted);
+    }
+    .hero-callout{
+      max-width:650px;
+      margin:0 0 26px;
+      padding:14px 16px;
+      border-left:4px solid var(--cyan);
+      border-radius:0 10px 10px 0;
+      background:rgba(34,184,232,.08);
+      color:var(--ink);
+      font-weight:650;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:17px}
+    .microcopy{font-size:.82rem;color:var(--muted)}
+
+    .mockup-wrap{position:relative;min-height:410px;display:grid;place-items:center}
+    .mockup{
+      width:min(100%,500px);
+      padding:26px;
+      border:1px solid rgba(220,232,243,.95);
+      border-radius:22px;
+      background:rgba(255,255,255,.96);
+      box-shadow:var(--shadow);
+      transform:rotate(1.2deg);
+    }
+    .mockup-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .dots{display:flex;gap:7px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#c8d8e7}
+    .pill{padding:6px 9px;border-radius:99px;background:#e9f5ff;color:var(--blue);font-size:.72rem;font-weight:800}
+    .score-row{display:grid;grid-template-columns:115px 1fr;gap:22px;align-items:center}
+    .score-ring{
+      width:115px;height:115px;border-radius:50%;
+      display:grid;place-items:center;
+      background:conic-gradient(var(--blue) 0 76%, #e9f1f8 76% 100%);
+      position:relative;
+    }
+    .score-ring::after{
+      content:"";
+      position:absolute;inset:13px;border-radius:50%;background:#fff;
+    }
+    .score-ring strong{position:relative;z-index:1;font-size:2rem;color:var(--navy)}
+    .bars{display:grid;gap:12px}
+    .bar{height:10px;border-radius:999px;background:#e9f1f8;overflow:hidden}
+    .bar span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+    .floating-card{
+      position:absolute;
+      left:0;
+      bottom:22px;
+      width:210px;
+      padding:15px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      box-shadow:var(--shadow-sm);
+    }
+    .floating-card strong{display:block;color:var(--navy);font-size:.9rem}
+    .floating-card span{font-size:.78rem;color:var(--muted)}
+
+    .section{padding:82px 0}
+    .section-soft{background:var(--soft);border-block:1px solid #e7eff7}
+    .section-head{max-width:760px;margin-bottom:34px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .step{
+      position:relative;
+      min-height:210px;
+      padding:25px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:var(--radius-sm);
+      background:#fff;
+      box-shadow:var(--shadow-sm);
+    }
+    .step-number{
+      position:absolute;right:17px;top:10px;
+      color:#e3eff9;
+      font-size:4rem;font-weight:900;line-height:1;
+    }
+    .step-icon{
+      width:42px;height:42px;border-radius:12px;
+      display:grid;place-items:center;
+      margin-bottom:18px;
+      background:#eaf5ff;color:var(--blue);font-weight:900;
+    }
+    .step h3{margin-bottom:8px}
+    .step p{margin-bottom:0;color:var(--muted);font-size:.92rem}
+
+    .value-grid{
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:48px;
+      align-items:center;
+    }
+    .checklist{display:grid;gap:12px;margin:22px 0}
+    .check{
+      display:flex;gap:10px;align-items:flex-start;
+      font-weight:700;
+    }
+    .check i{
+      flex:0 0 21px;
+      width:21px;height:21px;border-radius:50%;
+      display:grid;place-items:center;
+      background:#e9f7f0;color:var(--green);
+      font-style:normal;font-size:.78rem;
+    }
+    .privacy{
+      display:flex;gap:10px;
+      padding:13px;
+      border-radius:12px;
+      background:#edf5fc;
+      color:var(--muted);
+      font-size:.83rem;
+    }
+    .mini-dashboard{
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+    .mini-card{
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#fbfdff;
+    }
+    .mini-card small{display:block;color:var(--muted)}
+    .mini-card strong{display:block;margin-top:4px;color:var(--navy);font-size:1.55rem}
+
+    .diagnostic-shell{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .diag-header{
+      padding:23px 28px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(90deg,#f8fbfe,#fff);
+    }
+    .diag-meta{font-size:.8rem;color:var(--muted);font-weight:700}
+    .progress{
+      height:7px;
+      background:#e8f0f7;
+      overflow:hidden;
+    }
+    .progress span{
+      display:block;height:100%;width:20%;
+      background:linear-gradient(90deg,var(--blue),var(--cyan));
+      transition:width .35s ease;
+    }
+    .diag-body{padding:32px}
+    .screen{display:none}
+    .screen.active{display:block;animation:fade .24s ease}
+    @keyframes fade{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .field{display:grid;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-weight:800;color:var(--navy);font-size:.9rem}
+    .required{color:var(--red)}
+    input,select,textarea{
+      width:100%;
+      border:1px solid #cddce9;
+      border-radius:10px;
+      padding:12px 13px;
+      color:var(--ink);
+      background:#fff;
+      outline:none;
+      transition:.18s ease;
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--blue-2);
+      box-shadow:0 0 0 4px rgba(11,121,208,.10);
+    }
+    textarea{min-height:122px;resize:vertical}
+    .field-help{font-size:.77rem;color:var(--muted)}
+    .consent{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:.82rem}
+    .consent input{width:auto;margin-top:4px}
+    .question{margin-bottom:27px}
+    .question h3{margin-bottom:13px;font-size:1rem}
+    .choices{display:grid;gap:9px}
+    .choice{
+      position:relative;
+      display:flex;
+      align-items:flex-start;
+      gap:11px;
+      padding:13px 14px;
+      border:1px solid var(--line);
+      border-radius:11px;
+      cursor:pointer;
+      background:#fff;
+      transition:.17s ease;
+    }
+    .choice:hover{border-color:#a8c9e3;background:#f9fcff}
+    .choice input{width:auto;margin-top:4px}
+    .choice:has(input:checked){
+      border-color:var(--blue-2);
+      background:#eff8ff;
+      box-shadow:0 0 0 3px rgba(11,121,208,.08);
+    }
+    .diag-actions{
+      margin-top:28px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .result-top{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:24px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .result-ring{
+      width:150px;height:150px;border-radius:50%;
+      display:grid;place-items:center;
+      position:relative;
+      background:conic-gradient(var(--blue) 0 var(--score,60%),#e7eff7 var(--score,60%) 100%);
+    }
+    .result-ring::after{content:"";position:absolute;inset:15px;border-radius:50%;background:#fff}
+    .result-ring .inside{position:relative;z-index:2;text-align:center}
+    .result-ring strong{display:block;color:var(--navy);font-size:2.2rem;line-height:1}
+    .result-ring small{color:var(--muted)}
+    .recommendations{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}
+    .rec{
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#fbfdff;
+    }
+    .rec h3{margin-bottom:6px}
+    .rec p{margin:0;color:var(--muted);font-size:.9rem}
+    .priority-list{display:grid;gap:10px;margin:20px 0}
+    .priority{
+      display:flex;gap:11px;padding:13px;border-radius:11px;background:#f6f9fc;
+    }
+    .priority span{
+      flex:0 0 28px;width:28px;height:28px;border-radius:9px;
+      display:grid;place-items:center;
+      background:var(--navy);color:#fff;font-weight:900;font-size:.8rem;
+    }
+
+    .cta-band{
+      padding:42px 0;
+      color:#fff;
+      background:
+        radial-gradient(circle at 85% 0%,rgba(34,184,232,.28),transparent 28%),
+        linear-gradient(120deg,#061f40,#073a73);
+    }
+    .cta-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:center;
+    }
+    .cta-grid h2{color:#fff;margin-bottom:8px}
+    .cta-grid p{margin-bottom:0;color:#d6e7f6}
+    .cta-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .cta-band .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+
+    footer{padding:24px 0;background:#fff}
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      color:var(--muted);
+      font-size:.8rem;
+    }
+    .footer-grid img{width:135px}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-links a{text-decoration:none}
+
+    .toast{
+      position:fixed;
+      right:18px;bottom:18px;
+      z-index:99;
+      max-width:360px;
+      padding:13px 15px;
+      border-radius:12px;
+      color:#fff;background:var(--navy);
+      box-shadow:var(--shadow);
+      opacity:0;transform:translateY(10px);pointer-events:none;
+      transition:.25s ease;
+    }
+    .toast.show{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .hero-grid,.value-grid,.cta-grid{grid-template-columns:1fr}
+      .hero{padding-top:58px}
+      .hero-grid{gap:30px}
+      .mockup-wrap{min-height:340px}
+      .steps{grid-template-columns:1fr}
+      .result-top{grid-template-columns:1fr;text-align:center}
+      .result-ring{margin:auto}
+      .recommendations{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .nav-link{display:none}
+      .brand img{width:145px}
+      .nav .btn{min-height:40px;padding:0 13px;font-size:.84rem}
+      .hero{padding:44px 0 56px}
+      h1{font-size:2.7rem}
+      .hero-actions{display:grid}
+      .hero-actions .btn{width:100%}
+      .mockup{padding:18px}
+      .score-row{grid-template-columns:84px 1fr}
+      .score-ring{width:84px;height:84px}
+      .score-ring::after{inset:10px}
+      .floating-card{display:none}
+      .section{padding:58px 0}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .diag-header,.diag-body{padding:20px}
+      .diag-actions{flex-direction:column-reverse}
+      .diag-actions .btn{width:100%}
+      .mini-grid{grid-template-columns:1fr}
+      .cta-actions{display:grid;width:100%}
+      .footer-grid{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="https://www.instant.com.br/" target="_blank" rel="noopener">
+        <img src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions">
+      </a>
+      <div class="nav-actions">
+        <a class="nav-link" href="#como-funciona">Como funciona</a>
+        <a class="btn btn-primary" href="#diagnostico">Fazer diagnóstico</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Diagnóstico gratuito de maturidade digital</p>
+          <h1>Sua operação está pronta para <span class="gradient-text">atender, vender e escalar?</span></h1>
+          <p class="lead">Avalie em poucos minutos como sua empresa organiza atendimento, vendas, telefonia, WhatsApp corporativo e inteligência artificial.</p>
+          <div class="hero-callout">Receba uma pontuação de 0 a 100, identifique os principais gargalos e veja quais soluções podem gerar impacto mais rápido.</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#diagnostico">Avaliar minha operação</a>
+            <a class="btn btn-secondary" href="#como-funciona">Ver como funciona</a>
+          </div>
+          <p class="microcopy">Indicado para gestores de atendimento, vendas, tecnologia, operações, compliance e experiência do cliente.</p>
+        </div>
+
+        <div class="mockup-wrap" aria-hidden="true">
+          <div class="mockup">
+            <div class="mockup-head">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <span class="pill">Diagnóstico Instant</span>
+            </div>
+            <div class="score-row">
+              <div class="score-ring"><strong>76</strong></div>
+              <div class="bars">
+                <div class="bar"><span style="width:88%"></span></div>
+                <div class="bar"><span style="width:67%"></span></div>
+                <div class="bar"><span style="width:78%"></span></div>
+                <div class="bar"><span style="width:55%"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-card">
+            <strong>Próxima prioridade</strong>
+            <span>Centralizar canais e automatizar o fluxo comercial.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Como funciona</p>
+          <h2>Três passos para enxergar onde sua operação pode evoluir</h2>
+          <p class="muted">O diagnóstico combina contexto, práticas atuais e prioridades para produzir uma recomendação objetiva.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">1</span>
+            <div class="step-icon">✓</div>
+            <h3>Conte como sua empresa opera</h3>
+            <p>Responda perguntas rápidas sobre canais, equipe, sistemas, indicadores e governança.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <div class="step-icon">↗</div>
+            <h3>Receba sua análise</h3>
+            <p>Veja sua pontuação geral e o nível de maturidade em diferentes dimensões da operação.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <div class="step-icon">◎</div>
+            <h3>Priorize os próximos passos</h3>
+            <p>Identifique as iniciativas com maior potencial de ganho em produtividade, controle e experiência.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container value-grid">
+        <div>
+          <p class="eyebrow">Antes de começar</p>
+          <h2>Preencha seus dados para liberar o diagnóstico</h2>
+          <p class="muted">Em troca de poucos minutos, você recebe uma visão estruturada dos principais pontos de melhoria da sua operação.</p>
+          <div class="checklist">
+            <div class="check"><i>✓</i><span>Nota geral de maturidade de 0 a 100</span></div>
+            <div class="check"><i>✓</i><span>Análise por atendimento, vendas, voz, governança e IA</span></div>
+            <div class="check"><i>✓</i><span>Recomendações alinhadas ao seu cenário</span></div>
+            <div class="check"><i>✓</i><span>Possibilidade de conversar com um especialista</span></div>
+          </div>
+          <div class="privacy">🔒 Seus dados serão usados pela Instant Solutions para contato relacionado ao diagnóstico e às soluções apresentadas.</div>
+        </div>
+
+        <div class="mini-dashboard">
+          <p class="eyebrow">O que você vai visualizar</p>
+          <div class="mini-grid">
+            <div class="mini-card"><small>Maturidade geral</small><strong>0–100</strong></div>
+            <div class="mini-card"><small>Dimensões avaliadas</small><strong>5</strong></div>
+            <div class="mini-card"><small>Prioridades sugeridas</small><strong>3</strong></div>
+            <div class="mini-card"><small>Tempo estimado</small><strong>4 min</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="diagnostico">
+      <div class="container">
+        <div class="diagnostic-shell">
+          <div class="diag-header">
+            <div>
+              <p class="eyebrow" style="margin-bottom:5px">Diagnóstico interativo</p>
+              <strong id="diagTitle">Etapa 1 de 5 — Seus dados</strong>
+            </div>
+            <div class="diag-meta" id="diagMeta">20% concluído</div>
+          </div>
+          <div class="progress"><span id="progressBar"></span></div>
+
+          <div class="diag-body">
+            <form id="diagnosticForm" novalidate>
+              <section class="screen active" data-step="1">
+                <h2 style="font-size:2rem">Vamos começar pelo seu contexto</h2>
+                <p class="muted">Os campos abaixo permitem personalizar a recomendação e viabilizar o contato comercial.</p>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="name">Nome <span class="required">*</span></label>
+                    <input id="name" name="name" autocomplete="name" required>
+                  </div>
+                  <div class="field">
+                    <label for="email">E-mail corporativo <span class="required">*</span></label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+                  </div>
+                  <div class="field">
+                    <label for="company">Empresa <span class="required">*</span></label>
+                    <input id="company" name="company" autocomplete="organization" required>
+                  </div>
+                  <div class="field">
+                    <label for="phone">WhatsApp / Telefone <span class="required">*</span></label>
+                    <input id="phone" name="phone" inputmode="tel" autocomplete="tel" required>
+                  </div>
+                  <div class="field">
+                    <label for="role">Cargo</label>
+                    <input id="role" name="role" autocomplete="organization-title">
+                  </div>
+                  <div class="field">
+                    <label for="size">Tamanho da equipe envolvida</label>
+                    <select id="size" name="size">
+                      <option value="">Selecione</option>
+                      <option>Até 5 pessoas</option>
+                      <option>6 a 20 pessoas</option>
+                      <option>21 a 50 pessoas</option>
+                      <option>51 a 100 pessoas</option>
+                      <option>Mais de 100 pessoas</option>
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label class="consent">
+                      <input type="checkbox" id="consent" required>
+                      <span>Concordo em receber o resultado do diagnóstico e contatos relacionados às soluções da Instant Solutions. <span class="required">*</span></span>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="screen" data-step="2">
+                <p class="eyebrow">Atendimento e canais</p>
+                <h2 style="font-size:2rem">Como sua empresa conversa com os clientes?</h2>
+
+                <div class="question" data-dimension="kwik">
+                  <h3>1. Como os canais de atendimento são gerenciados hoje?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q1" value="1"><span>De forma separada, usando celulares, e-mails e ferramentas diferentes.</span></label>
+                    <label class="choice"><input type="radio" name="q1" value="2"><span>Parcialmente centralizados, mas ainda há perda de histórico e retrabalho.</span></label>
+                    <label class="choice"><input type="radio" name="q1" value="3"><span>Centralizados em uma plataforma, com histórico único por cliente.</span></label>
+                    <label class="choice"><input type="radio" name="q1" value="4"><span>Centralizados, automatizados e integrados ao CRM e a outros sistemas.</span></label>
+                  </div>
+                </div>
+
+                <div class="question" data-dimension="kwik">
+                  <h3>2. Como funciona a distribuição e o acompanhamento dos atendimentos?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q2" value="1"><span>Não há filas, SLA ou supervisão estruturada.</span></label>
+                    <label class="choice"><input type="radio" name="q2" value="2"><span>Há alguma organização manual, mas pouca visibilidade gerencial.</span></label>
+                    <label class="choice"><input type="radio" name="q2" value="3"><span>Usamos filas, responsáveis e relatórios básicos.</span></label>
+                    <label class="choice"><input type="radio" name="q2" value="4"><span>Temos regras automáticas, supervisão, SLAs e indicadores em tempo real.</span></label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="screen" data-step="3">
+                <p class="eyebrow">Vendas e telefonia</p>
+                <h2 style="font-size:2rem">Como sua equipe transforma contatos em oportunidades?</h2>
+
+                <div class="question" data-dimension="sales">
+                  <h3>3. O processo comercial está organizado em um funil?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q3" value="1"><span>Não. Usamos planilhas, anotações ou conversas dispersas.</span></label>
+                    <label class="choice"><input type="radio" name="q3" value="2"><span>Há um CRM, mas o uso é pouco padronizado.</span></label>
+                    <label class="choice"><input type="radio" name="q3" value="3"><span>O funil é acompanhado e possui etapas e responsáveis definidos.</span></label>
+                    <label class="choice"><input type="radio" name="q3" value="4"><span>O funil dispara automações, tarefas e contatos por diferentes canais.</span></label>
+                  </div>
+                </div>
+
+                <div class="question" data-dimension="voice">
+                  <h3>4. Qual é o nível de gestão da telefonia corporativa?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q4" value="1"><span>Uso de celulares ou telefonia sem controle centralizado.</span></label>
+                    <label class="choice"><input type="radio" name="q4" value="2"><span>PABX ou serviço em nuvem com recursos básicos.</span></label>
+                    <label class="choice"><input type="radio" name="q4" value="3"><span>URA, gravação, relatórios e gestão de ramais.</span></label>
+                    <label class="choice"><input type="radio" name="q4" value="4"><span>Contact center integrado ao CRM, discador, supervisão e automações.</span></label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="screen" data-step="4">
+                <p class="eyebrow">Governança e inteligência artificial</p>
+                <h2 style="font-size:2rem">Quanto controle e automação sua operação possui?</h2>
+
+                <div class="question" data-dimension="scout">
+                  <h3>5. Como a empresa acompanha conversas realizadas em números de WhatsApp corporativo?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q5" value="1"><span>Não acompanha; o histórico depende do aparelho ou do colaborador.</span></label>
+                    <label class="choice"><input type="radio" name="q5" value="2"><span>Há políticas internas, mas pouca capacidade de auditoria.</span></label>
+                    <label class="choice"><input type="radio" name="q5" value="3"><span>Conseguimos consultar históricos e acompanhar parte das conversas.</span></label>
+                    <label class="choice"><input type="radio" name="q5" value="4"><span>Temos monitoria, alertas, exportação e rastreabilidade estruturada.</span></label>
+                  </div>
+                </div>
+
+                <div class="question" data-dimension="ai">
+                  <h3>6. Como a inteligência artificial é utilizada no atendimento ou nas vendas?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q6" value="1"><span>Ainda não utilizamos IA nesses processos.</span></label>
+                    <label class="choice"><input type="radio" name="q6" value="2"><span>Usamos ferramentas isoladas para tarefas pontuais.</span></label>
+                    <label class="choice"><input type="radio" name="q6" value="3"><span>IA já ajuda em respostas, resumos ou classificação.</span></label>
+                    <label class="choice"><input type="radio" name="q6" value="4"><span>IA está integrada aos canais, bases internas e automações operacionais.</span></label>
+                  </div>
+                </div>
+
+                <div class="question" data-dimension="analytics">
+                  <h3>7. Como os gestores acompanham produtividade, qualidade e experiência do cliente?</h3>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="q7" value="1"><span>As decisões são baseadas principalmente em percepção e relatos.</span></label>
+                    <label class="choice"><input type="radio" name="q7" value="2"><span>Há planilhas ou relatórios produzidos manualmente.</span></label>
+                    <label class="choice"><input type="radio" name="q7" value="3"><span>Existem dashboards e indicadores periódicos.</span></label>
+                    <label class="choice"><input type="radio" name="q7" value="4"><span>Indicadores em tempo real geram alertas e orientam ações de melhoria.</span></label>
+                  </div>
+                </div>
+              </section>
+
+              <section class="screen" data-step="5">
+                <p class="eyebrow">Seu resultado</p>
+                <div class="result-top">
+                  <div class="result-ring" id="resultRing">
+                    <div class="inside"><strong id="scoreValue">0</strong><small>de 100</small></div>
+                  </div>
+                  <div>
+                    <h2 id="resultTitle" style="font-size:2.2rem">Sua análise está pronta</h2>
+                    <p class="muted" id="resultSummary"></p>
+                  </div>
+                </div>
+
+                <div class="recommendations" id="recommendations"></div>
+
+                <h3>Prioridades sugeridas para os próximos passos</h3>
+                <div class="priority-list" id="priorities"></div>
+
+                <div class="privacy" style="margin-top:20px">
+                  O resultado apresenta uma análise inicial. Uma conversa com um especialista permite aprofundar requisitos, integrações, volumes e prioridades.
+                </div>
+
+                <div class="diag-actions" style="margin-top:24px">
+                  <button class="btn btn-secondary" type="button" id="restartBtn">Refazer diagnóstico</button>
+                  <a class="btn btn-primary" id="whatsappResult" target="_blank" rel="noopener">Conversar com um especialista</a>
+                </div>
+              </section>
+
+              <div class="diag-actions" id="navButtons">
+                <button class="btn btn-secondary" type="button" id="backBtn" style="visibility:hidden">Voltar</button>
+                <button class="btn btn-primary" type="button" id="nextBtn">Avançar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-grid">
+        <div>
+          <h2>Uma operação integrada reduz atrito e cria espaço para crescer.</h2>
+          <p>A Instant Solutions reúne atendimento omnichannel, telefonia em nuvem, monitoria de WhatsApp e inteligência artificial em um portfólio modular.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#diagnostico">Fazer diagnóstico</a>
+          <a class="btn btn-secondary" href="https://solucoes.instant.com.br" target="_blank" rel="noopener">Conhecer a Instant</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <a href="https://www.instant.com.br/" target="_blank" rel="noopener">
+        <img src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions">
+      </a>
+      <div class="footer-links">
+        <span>© <span id="year"></span> Instant Solutions</span>
+        <a href="https://www.instant.com.br/" target="_blank" rel="noopener">Site institucional</a>
+        <a href="https://solucoes.instant.com.br/descadastrado/" target="_blank" rel="noopener">Descadastramento</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /*
+      CONFIGURAÇÃO DE CAPTURA DE LEADS
+      1) Defina LEAD_ENDPOINT com a URL de um webhook/API que aceite JSON via POST.
+      2) Se permanecer vazio, os dados serão apenas salvos no navegador do visitante.
+    */
+    const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbzQRbEoiDAq0ZJbE12W68rzNDV44LjWU-KpHb0fbElxXvxO1SAbW7BhuP4fASq4Nmx5eA/exec";
+    const SALES_WHATSAPP = "551140636100";
+
+    const form = document.getElementById("diagnosticForm");
+    const screens = [...document.querySelectorAll(".screen")];
+    const progressBar = document.getElementById("progressBar");
+    const diagTitle = document.getElementById("diagTitle");
+    const diagMeta = document.getElementById("diagMeta");
+    const nextBtn = document.getElementById("nextBtn");
+    const backBtn = document.getElementById("backBtn");
+    const navButtons = document.getElementById("navButtons");
+    const toast = document.getElementById("toast");
+    let step = 1;
+
+    const labels = [
+      "Etapa 1 de 5 — Seus dados",
+      "Etapa 2 de 5 — Atendimento e canais",
+      "Etapa 3 de 5 — Vendas e telefonia",
+      "Etapa 4 de 5 — Governança e IA",
+      "Etapa 5 de 5 — Resultado"
+    ];
+
+    const productContent = {
+      kwik:{
+        name:"Kwik",
+        text:"Centralize WhatsApp, Instagram, webchat, e-mail, voz e outros canais, com CRM, filas, automações e histórico unificado.",
+        priority:"Unificar canais, histórico, filas e processos de atendimento e vendas."
+      },
+      voice:{
+        name:"InstantVoice",
+        text:"Estruture PABX e Contact Center em nuvem com URA, gravação, supervisão, discador e integração ao CRM.",
+        priority:"Evoluir a telefonia para uma operação controlada, mensurável e integrada."
+      },
+      scout:{
+        name:"Kwik Scout",
+        text:"Amplie a governança sobre conversas de WhatsApp corporativo com histórico, alertas, monitoria e auditoria.",
+        priority:"Criar rastreabilidade e reduzir riscos em conversas realizadas por equipes."
+      },
+      ai:{
+        name:"Córtex",
+        text:"Use IA generativa para respostas, resumos, classificação, análise e automação conectada às bases da empresa.",
+        priority:"Aplicar IA em tarefas repetitivas e pontos de maior volume ou tempo de resposta."
+      },
+      analytics:{
+        name:"Gestão por dados",
+        text:"Consolide indicadores de produtividade, qualidade, SLA e experiência para decisões mais rápidas.",
+        priority:"Transformar dados operacionais em rotinas de gestão e melhoria contínua."
+      },
+      sales:{
+        name:"Automação comercial",
+        text:"Organize o funil, padronize follow-ups e conecte tarefas, campanhas, voz e WhatsApp ao processo comercial.",
+        priority:"Padronizar o funil e automatizar os próximos passos de cada oportunidade."
+      }
+    };
+
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(()=>toast.classList.remove("show"), 3300);
+    }
+
+    function updateUI(){
+      screens.forEach(s => s.classList.toggle("active", Number(s.dataset.step) === step));
+      const percent = step * 20;
+      progressBar.style.width = percent + "%";
+      diagTitle.textContent = labels[step - 1];
+      diagMeta.textContent = percent + "% concluído";
+      backBtn.style.visibility = step === 1 ? "hidden" : "visible";
+      nextBtn.textContent = step === 4 ? "Ver meu diagnóstico" : "Avançar";
+      navButtons.style.display = step === 5 ? "none" : "flex";
+      document.getElementById("diagnostico").scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function validateCurrentStep(){
+      const current = screens.find(s => Number(s.dataset.step) === step);
+      if(step === 1){
+        const required = [...current.querySelectorAll("[required]")];
+        let valid = true;
+        required.forEach(el => {
+          if(!el.checkValidity()){
+            el.reportValidity();
+            valid = false;
+          }
+        });
+        return valid;
+      }
+      if(step >= 2 && step <= 4){
+        const groups = [...new Set([...current.querySelectorAll('input[type="radio"]')].map(i=>i.name))];
+        const missing = groups.find(name => !form.querySelector(`input[name="${name}"]:checked`));
+        if(missing){
+          showToast("Responda todas as perguntas desta etapa para continuar.");
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function formDataObject(){
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.consent = document.getElementById("consent").checked;
+      return data;
+    }
+
+    async function saveLead(payload){
+      localStorage.setItem("instant_diagnostic_lead", JSON.stringify(payload));
+      if(!LEAD_ENDPOINT) return;
+      try{
+        await fetch(LEAD_ENDPOINT,{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(payload)
+        });
+      }catch(err){
+        console.warn("Não foi possível enviar o lead ao endpoint.", err);
+      }
+    }
+
+    function calculateResult(){
+      const data = formDataObject();
+      const questions = ["q1","q2","q3","q4","q5","q6","q7"];
+      const raw = questions.reduce((sum,q)=>sum + Number(data[q] || 0),0);
+      const score = Math.round(((raw - 7) / 21) * 100);
+
+      const dimensions = {
+        kwik:(Number(data.q1)+Number(data.q2))/2,
+        sales:Number(data.q3),
+        voice:Number(data.q4),
+        scout:Number(data.q5),
+        ai:Number(data.q6),
+        analytics:Number(data.q7)
+      };
+
+      let title, summary;
+      if(score < 35){
+        title = "Sua operação ainda depende de processos dispersos";
+        summary = "Há oportunidades relevantes para reduzir retrabalho, preservar históricos e criar mais controle sobre atendimento e vendas.";
+      }else if(score < 60){
+        title = "Sua operação funciona, mas ainda perde eficiência";
+        summary = "A base existe, porém a fragmentação entre canais, sistemas e processos limita produtividade, governança e escala.";
+      }else if(score < 80){
+        title = "Sua operação está estruturada e pronta para integrar";
+        summary = "O próximo salto está em conectar canais, dados, automações e indicadores para eliminar etapas manuais e ampliar previsibilidade.";
+      }else{
+        title = "Sua operação apresenta alta maturidade digital";
+        summary = "O foco recomendado é aprofundar inteligência artificial, automações avançadas e melhoria contínua baseada em dados.";
+      }
+
+      document.getElementById("scoreValue").textContent = score;
+      document.getElementById("resultRing").style.setProperty("--score", score + "%");
+      document.getElementById("resultTitle").textContent = title;
+      document.getElementById("resultSummary").textContent = summary;
+
+      const ordered = Object.entries(dimensions).sort((a,b)=>a[1]-b[1]);
+      const recommended = ordered.slice(0,4);
+      const recommendationBox = document.getElementById("recommendations");
+      recommendationBox.innerHTML = recommended.map(([key]) => `
+        <article class="rec">
+          <h3>${productContent[key].name}</h3>
+          <p>${productContent[key].text}</p>
+        </article>`).join("");
+
+      const priorities = document.getElementById("priorities");
+      priorities.innerHTML = ordered.slice(0,3).map(([key],i)=>`
+        <div class="priority"><span>${i+1}</span><div><strong>${productContent[key].priority}</strong></div></div>
+      `).join("");
+
+      const message = encodeURIComponent(
+        `Olá, concluí o Diagnóstico de Maturidade Digital da Instant Solutions.\n`+
+        `Nome: ${data.name}\nEmpresa: ${data.company}\nPontuação: ${score}/100\n`+
+        `Gostaria de conversar sobre as recomendações.`
+      );
+      document.getElementById("whatsappResult").href = `https://wa.me/${SALES_WHATSAPP}?text=${message}`;
+
+      saveLead({
+        ...data,
+        score,
+        dimensions,
+        createdAt:new Date().toISOString(),
+        source:"diagnostico-maturidade-instant"
+      });
+    }
+
+    nextBtn.addEventListener("click",()=>{
+      if(!validateCurrentStep()) return;
+      if(step === 4) calculateResult();
+      step = Math.min(5,step+1);
+      updateUI();
+    });
+
+    backBtn.addEventListener("click",()=>{
+      step = Math.max(1,step-1);
+      updateUI();
+    });
+
+    document.getElementById("restartBtn").addEventListener("click",()=>{
+      form.reset();
+      step = 1;
+      updateUI();
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    updateUI();
+  </script>
+</body>
+</html>
