@@ -935,6 +935,108 @@
       }
     }
 
+    function gerarContextoSDR(dados, score, dimensions) {
+      const respostas = {
+        q1: {
+          "1": "os canais são gerenciados separadamente, com uso de celulares, e-mails ou ferramentas diferentes",
+          "2": "os canais estão parcialmente centralizados, mas ainda há perda de histórico e retrabalho",
+          "3": "os canais estão centralizados, com histórico único por cliente",
+          "4": "os canais estão centralizados, automatizados e integrados ao CRM e a outros sistemas"
+        },
+        q2: {
+          "1": "não há filas, SLA ou supervisão estruturada",
+          "2": "há organização manual, mas pouca visibilidade gerencial",
+          "3": "há uso de filas, responsáveis e relatórios básicos",
+          "4": "há regras automáticas, supervisão, SLAs e indicadores em tempo real"
+        },
+        q3: {
+          "1": "o processo comercial depende de planilhas, anotações ou conversas dispersas",
+          "2": "há um CRM, mas seu uso ainda é pouco padronizado",
+          "3": "o funil comercial possui etapas, responsáveis e acompanhamento",
+          "4": "o funil comercial utiliza automações, tarefas e contatos por diferentes canais"
+        },
+        q4: {
+          "1": "a telefonia utiliza celulares ou recursos sem controle centralizado",
+          "2": "há PABX ou telefonia em nuvem com funcionalidades básicas",
+          "3": "a telefonia possui URA, gravação, relatórios e gestão de ramais",
+          "4": "há uma operação de Contact Center integrada ao CRM, com discador, supervisão e automações"
+        },
+        q5: {
+          "1": "a empresa não acompanha as conversas realizadas nos números de WhatsApp corporativo",
+          "2": "há políticas internas, mas pouca capacidade de auditoria das conversas",
+          "3": "é possível consultar históricos e acompanhar parte das conversas",
+          "4": "há monitoria, alertas, exportação e rastreabilidade estruturada das conversas"
+        },
+        q6: {
+          "1": "a empresa ainda não utiliza inteligência artificial no atendimento ou nas vendas",
+          "2": "a empresa utiliza ferramentas isoladas de IA para tarefas pontuais",
+          "3": "a IA já auxilia em respostas, resumos ou classificações",
+          "4": "a IA está integrada aos canais, bases internas e automações operacionais"
+        },
+        q7: {
+          "1": "as decisões são baseadas principalmente em percepção e relatos",
+          "2": "há planilhas ou relatórios produzidos manualmente",
+          "3": "existem dashboards e indicadores periódicos",
+          "4": "há indicadores em tempo real, alertas e ações estruturadas de melhoria"
+        }
+      };
+
+      const nivel =
+        score < 35
+          ? "baixa maturidade digital"
+          : score < 60
+          ? "maturidade digital intermediária, com oportunidades relevantes de estruturação"
+          : score < 80
+          ? "boa maturidade digital, com oportunidades de integração e automação"
+          : "alta maturidade digital, com potencial para automações avançadas e inteligência artificial";
+
+      const recomendacoes = [];
+
+      if (dimensions.kwik <= 2) {
+        recomendacoes.push("Kwik, para centralização dos canais, histórico, filas, CRM e automações");
+      }
+      if (dimensions.sales <= 2) {
+        recomendacoes.push("automação comercial, para organizar o funil e os processos de acompanhamento");
+      }
+      if (dimensions.voice <= 2) {
+        recomendacoes.push("InstantVoice, para estruturar a telefonia, gravação, URA, supervisão e integrações");
+      }
+      if (dimensions.scout <= 2) {
+        recomendacoes.push("Kwik Scout, para ampliar a governança e a rastreabilidade das conversas de WhatsApp");
+      }
+      if (dimensions.ai <= 2) {
+        recomendacoes.push("Córtex, para aplicar inteligência artificial em respostas, análises e tarefas repetitivas");
+      }
+      if (dimensions.analytics <= 2) {
+        recomendacoes.push("dashboards e indicadores, para apoiar a gestão por dados");
+      }
+
+      const listaRecomendacoes = recomendacoes.length > 0
+        ? recomendacoes.join("; ")
+        : "integrações avançadas, inteligência artificial e melhoria contínua baseada em dados";
+
+      const descricaoCenario = [
+        respostas.q1[dados.q1],
+        respostas.q2[dados.q2],
+        respostas.q3[dados.q3],
+        respostas.q4[dados.q4],
+        respostas.q5[dados.q5],
+        respostas.q6[dados.q6],
+        respostas.q7[dados.q7]
+      ].filter(Boolean).join("; ");
+
+      return [
+        "Lead captado pelo Diagnóstico de Maturidade Digital da Instant Solutions.",
+        `Empresa: ${dados.company || "não informada"}.`,
+        `Cargo: ${dados.role || "não informado"}.`,
+        `Equipe envolvida: ${dados.size || "não informada"}.`,
+        `Pontuação obtida: ${score} de 100, indicando ${nivel}.`,
+        `Cenário informado: ${descricaoCenario}.`,
+        `Soluções ou frentes com maior potencial de aderência: ${listaRecomendacoes}.`,
+        "Abordagem recomendada ao SDR: realizar contato consultivo para validar sistemas utilizados atualmente, quantidade de usuários, canais, volume de interações, principais gargalos, impacto operacional, urgência e orçamento disponível."
+      ].join(" ");
+    }
+
     function calculateResult(){
       const data = formDataObject();
       const questions = ["q1","q2","q3","q4","q5","q6","q7"];
@@ -991,12 +1093,15 @@
       );
       document.getElementById("whatsappResult").href = `https://wa.me/${SALES_WHATSAPP}?text=${message}`;
 
+      const sdrContext = gerarContextoSDR(data, score, dimensions);
+
       saveLead({
         ...data,
         score,
         dimensions,
         createdAt:new Date().toISOString(),
-        source:"diagnostico-maturidade-instant"
+        source:"Diagnóstico de Maturidade Digital | Landing Page Instant Solutions",
+        sdr_context:sdrContext
       });
     }
 
