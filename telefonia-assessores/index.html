@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Telefonia corporativa em nuvem com gravação de chamadas para assessores de investimentos." />
+  <title>Telefonia e Gravação para Assessores de Investimentos | Instant Solutions</title>
+
+  <style>
+    :root{
+      --blue-900:#0b2b52;
+      --blue-800:#103d73;
+      --blue-700:#16589f;
+      --blue-600:#2174c9;
+      --blue-500:#3f8fdb;
+      --blue-100:#eaf4fc;
+      --blue-050:#f6faff;
+      --ink:#172033;
+      --muted:#5f6f82;
+      --line:#dbe7f1;
+      --white:#ffffff;
+      --shadow:0 22px 50px rgba(14,57,100,.13);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--blue-050);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1180px, calc(100% - 32px));margin:0 auto}
+
+    .topbar{
+      background:#082847;
+      color:#fff;
+      font-size:13px;
+      letter-spacing:.01em;
+    }
+    .topbar .container{
+      min-height:36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    header{
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid rgba(219,231,241,.9);
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(12px);
+    }
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand img{width:220px;height:auto}
+    .header-cta{
+      text-decoration:none;
+      background:var(--blue-700);
+      color:#fff;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:700;
+      font-size:14px;
+      transition:.2s ease;
+      box-shadow:0 8px 20px rgba(22,88,159,.22);
+    }
+    .header-cta:hover{transform:translateY(-1px);background:var(--blue-800)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(75,157,226,.22), transparent 29%),
+        linear-gradient(135deg, #08294d 0%, #0d447c 55%, #1261a8 100%);
+      color:#fff;
+      padding:76px 0 84px;
+    }
+    .hero:before,.hero:after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.05);
+    }
+    .hero:before{width:420px;height:420px;right:-150px;top:-190px}
+    .hero:after{width:260px;height:260px;left:-100px;bottom:-150px}
+
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.09);
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+    h1{
+      font-size:clamp(38px, 5vw, 64px);
+      line-height:1.06;
+      margin:0 0 22px;
+      letter-spacing:-.035em;
+      max-width:780px;
+    }
+    .hero-copy{
+      font-size:clamp(17px, 2vw, 20px);
+      color:rgba(255,255,255,.86);
+      max-width:690px;
+      margin:0 0 28px;
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px 18px;
+      margin:28px 0 32px;
+    }
+    .hero-point{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:rgba(255,255,255,.92);
+      font-size:14px;
+      font-weight:600;
+    }
+    .check{
+      flex:0 0 22px;
+      height:22px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+      font-size:13px;
+    }
+    .primary-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 24px;
+      border-radius:12px;
+      text-decoration:none;
+      color:var(--blue-900);
+      background:#fff;
+      font-weight:800;
+      box-shadow:0 14px 28px rgba(0,0,0,.16);
+      transition:.2s ease;
+    }
+    .primary-btn:hover{transform:translateY(-2px)}
+
+    .hero-card{
+      background:rgba(255,255,255,.96);
+      color:var(--ink);
+      border-radius:26px;
+      padding:28px;
+      box-shadow:0 30px 60px rgba(0,0,0,.2);
+      border:1px solid rgba(255,255,255,.5);
+    }
+    .hero-card small{
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--blue-600);
+      font-weight:800;
+    }
+    .hero-card h2{
+      margin:8px 0 12px;
+      font-size:28px;
+      line-height:1.18;
+      letter-spacing:-.02em;
+    }
+    .hero-card p{margin:0;color:var(--muted)}
+    .mini-flow{
+      display:grid;
+      gap:12px;
+      margin-top:22px;
+    }
+    .mini-flow-item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:var(--blue-050);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:13px 14px;
+      font-size:14px;
+      font-weight:700;
+    }
+    .mini-number{
+      width:30px;height:30px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--blue-700);color:#fff;
+      font-size:13px;
+    }
+
+    section{padding:80px 0}
+    .section-kicker{
+      color:var(--blue-700);
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-weight:800;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+    .section-title{
+      margin:0;
+      font-size:clamp(30px, 4vw, 44px);
+      letter-spacing:-.03em;
+      line-height:1.12;
+    }
+    .section-copy{
+      color:var(--muted);
+      max-width:760px;
+      font-size:17px;
+      margin:16px 0 0;
+    }
+
+    .benefits-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-top:38px;
+    }
+    .benefit{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(18,74,126,.06);
+    }
+    .icon{
+      width:46px;height:46px;border-radius:14px;
+      display:grid;place-items:center;
+      background:var(--blue-100);
+      color:var(--blue-700);
+      font-weight:900;
+      margin-bottom:17px;
+      font-size:20px;
+    }
+    .benefit h3{font-size:18px;margin:0 0 8px}
+    .benefit p{margin:0;color:var(--muted);font-size:14px}
+
+    .solutions{
+      background:#fff;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .solution-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+      margin-top:38px;
+    }
+    .solution{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:26px;
+      background:linear-gradient(180deg,#fff 0%,#f9fcff 100%);
+    }
+    .solution h3{font-size:21px;margin:0 0 9px}
+    .solution p{margin:0;color:var(--muted)}
+    .solution strong{color:var(--blue-800)}
+
+    .form-section{
+      background:linear-gradient(180deg,#f5faff 0%,#eef6fc 100%);
+    }
+    .form-wrap{
+      display:grid;
+      grid-template-columns:.78fr 1.22fr;
+      gap:34px;
+      align-items:start;
+    }
+    .form-intro{
+      position:sticky;
+      top:112px;
+    }
+    .form-intro h2{
+      font-size:clamp(30px,4vw,44px);
+      line-height:1.12;
+      letter-spacing:-.03em;
+      margin:0 0 16px;
+    }
+    .form-intro p{color:var(--muted);font-size:17px;margin:0 0 22px}
+    .privacy-note{
+      display:flex;
+      gap:12px;
+      padding:15px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .form-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .form-card iframe{
+      width:100%;
+      display:block;
+      border:0;
+      border-radius:14px;
+      background:#fff;
+    }
+
+    .form-fallback{
+      margin-top:14px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .form-fallback a{
+      color:var(--blue-700);
+      font-weight:700;
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+    .form-fallback a:hover{
+      color:var(--blue-800);
+    }
+
+    .trust{
+      padding:46px 0;
+      background:#0b2b52;
+      color:#fff;
+    }
+    .trust-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+      text-align:center;
+    }
+    .trust-item strong{display:block;font-size:25px;margin-bottom:4px}
+    .trust-item span{color:rgba(255,255,255,.72);font-size:13px}
+
+    footer{
+      background:#071b31;
+      color:rgba(255,255,255,.78);
+      padding:34px 0;
+      font-size:13px;
+    }
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      align-items:center;
+    }
+    .footer-inner a{color:#fff;text-decoration:none}
+
+    @media (max-width: 980px){
+      .hero-grid,.form-wrap{grid-template-columns:1fr}
+      .hero-card{max-width:680px}
+      .benefits-grid{grid-template-columns:repeat(2,1fr)}
+      .form-intro{position:static}
+      .trust-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width: 640px){
+      .topbar .container{padding:8px 0}
+      .header-inner{min-height:68px}
+      .brand img{width:176px}
+      .header-cta{display:none}
+      .hero{padding:58px 0 62px}
+      .hero-points{grid-template-columns:1fr}
+      .hero-card{padding:22px}
+      section{padding:62px 0}
+      .benefits-grid,.solution-grid,.trust-grid{grid-template-columns:1fr}
+      .form-card{padding:8px;border-radius:16px}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">Canal exclusivo para assessores de investimentos vinculados à sua corretora</div>
+  </div>
+
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="https://www.instant.com.br/" target="_blank" aria-label="Instant Solutions">
+        <img src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions" />
+      </a>
+      <a class="header-cta" href="#formulario">Iniciar solicitação</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Telefonia e gravação de chamadas</div>
+          <h1>Inicie sua solicitação de telefonia com gravação de chamadas.</h1>
+          <p class="hero-copy">
+            Preencha o formulário para que a Instant Solutions conheça sua necessidade e dê início às próximas etapas do processo. As informações serão utilizadas para orientar a definição do ramal, da operadora e da configuração do serviço de telefonia com gravação, apoiando o registro e a rastreabilidade das ordens realizadas por telefone.
+          </p>
+
+          <div class="hero-points">
+            <div class="hero-point"><span class="check">✓</span><span>Telefonia corporativa em nuvem</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Gravação das ligações realizadas e recebidas</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Histórico e consulta das chamadas</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Recursos que apoiam a conformidade regulatória e a rastreabilidade das interações</span></div>
+          </div>
+
+          <a class="primary-btn" href="#formulario">Iniciar solicitação</a>
+        </div>
+
+        <aside class="hero-card" aria-label="Como funciona">
+          <small>Próximas etapas</small>
+          <h2>Um processo simples e acompanhado</h2>
+          <p>O formulário registra sua solicitação e permite que nossa equipe faça o primeiro contato, esclareça dúvidas e apresente as opções necessárias antes da confirmação do serviço.</p>
+
+          <div class="mini-flow">
+            <div class="mini-flow-item"><span class="mini-number">1</span> Você envia seus dados e informa sua necessidade</div>
+            <div class="mini-flow-item"><span class="mini-number">2</span> Nossa equipe valida o cenário e a necessidade de ramais</div>
+            <div class="mini-flow-item"><span class="mini-number">3</span> Um gerente de contas entra em contato em até 1 dia útil</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-kicker">Por que preencher</div>
+        <h2 class="section-title">Informações que agilizam a análise e os próximos passos</h2>
+        <p class="section-copy">
+           O preenchimento do questionário é fundamental para agilizar o processo, proporcionando maior comodidade e facilidade operacional. A partir das informações enviadas, nossa equipe poderá validar seus dados, esclarecer dúvidas e orientar as etapas seguintes.
+        </p>
+
+        <div class="benefits-grid">
+          <article class="benefit">
+            <div class="icon">01</div>
+            <h3>Mais agilidade</h3>
+            <p>O envio antecipado das informações reduz etapas e facilita a análise inicial da solicitação.</p>
+          </article>
+          <article class="benefit">
+            <div class="icon">02</div>
+            <h3>Primeiro contato rápido</h3>
+            <p>Após o envio, um gerente de contas realiza o primeiro retorno em até 1 dia útil.</p>
+          </article>
+          <article class="benefit">
+            <div class="icon">03</div>
+            <h3>Configuração adequada</h3>
+            <p>Ramal, número, operadora e modalidade são definidos com sua participação antes da confirmação do serviço.</p>
+          </article>
+          <article class="benefit">
+            <div class="icon">04</div>
+            <h3>Implantação organizada</h3>
+            <p>O processo é conduzido por uma equipe técnica com experiência em operações do mercado financeiro.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions">
+      <div class="container">
+        <div class="section-kicker">Sobre os serviços</div>
+        <h2 class="section-title">Um ecossistema para conectar toda a operação</h2>
+        <p class="section-copy">
+          Além da telefonia com gravação de chamadas, a Instant Solutions oferece recursos complementares de atendimento, governança e inteligência artificial que podem apoiar a produtividade e a gestão da operação.
+        </p>
+
+        <div class="solution-grid">
+          <article class="solution">
+            <h3>Telefonia corporativa em nuvem</h3>
+            <p><strong>InstantVoice:</strong> PABX, contact center, URA, gravação, discador e supervisão para operações modernas.</p>
+          </article>
+          <article class="solution">
+            <h3>Atendimento e relacionamento digital</h3>
+            <p><strong>Kwik:</strong> centralização de canais, histórico, CRM e automações para operações que também precisam organizar o atendimento digital.</p>
+          </article>
+          <article class="solution">
+            <h3>Governança de WhatsApp corporativo</h3>
+            <p><strong>Kwik Scout:</strong> histórico, monitoria, alertas e auditoria das conversas realizadas em números corporativos.</p>
+          </article>
+          <article class="solution">
+            <h3>Inteligência artificial aplicada</h3>
+            <p><strong>Córtex:</strong> transcrição, resumo, classificação de interações e apoio à automação de atividades operacionais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section" id="formulario">
+      <div class="container form-wrap">
+        <div class="form-intro">
+          <div class="section-kicker">Próximo passo</div>
+          <h2>Preencha as informações para prosseguir.</h2>
+          <p>
+            Utilize o formulário abaixo para informar seus dados e as características da sua necessidade.
+            O envio não representa a contratação automática do serviço. Após o preenchimento, nossa equipe
+            entrará em contato para validar as informações, esclarecer dúvidas e orientar os próximos passos.
+          </p>
+
+          <div class="privacy-note">
+            <span aria-hidden="true">🔒</span>
+            <span>Os dados informados serão utilizados pela Instant Solutions para analisar a solicitação, realizar contato e orientar as próximas etapas. A configuração do serviço ocorrerá somente após a confirmação das condições aplicáveis.</span>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <iframe
+            id="kwik-form-019f8575-e52f-7c4d-ada4-c513fab45310"
+            src="https://kwik.app.br/form/019f8575-e52f-7c4d-ada4-c513fab45310"
+            style="width:100%; border:none;"
+            height="610px"
+            loading="lazy"
+            scrolling="no"
+            allow="clipboard-write"
+            title="Formulário para assessores de investimentos"
+          ></iframe>
+          <div class="form-fallback">
+            Se o formulário não aparecer,
+            <a href="https://kwik.app.br/form/019f8575-e52f-7c4d-ada4-c513fab45310"
+               target="_blank"
+               rel="noopener noreferrer">abra-o em uma nova guia</a>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="container trust-grid">
+        <div class="trust-item"><strong>20+ anos</strong><span>de experiência em comunicação corporativa</span></div>
+        <div class="trust-item"><strong>Mercado financeiro</strong><span>experiência em operações reguladas</span></div>
+        <div class="trust-item"><strong>Infraestrutura no Brasil</strong><span>com foco em segurança e continuidade</span></div>
+        <div class="trust-item"><strong>Ativação acompanhada</strong><span>suporte em todas as etapas do processo</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Instant Solutions. Todos os direitos reservados.</div>
+      <div>
+        <a href="https://www.instant.com.br/" target="_blank">www.instant.com.br</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:comercial@instant.com.br">comercial@instant.com.br</a>
+        &nbsp;·&nbsp;
+        <a href="https://wa.me/551140636100" target="_blank">+55 11 4063-6100</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener("message", function(event) {
+      if (event.data?.type !== "kwik-form-height") return;
+      if (event.data.formId !== "019f8575-e52f-7c4d-ada4-c513fab45310") return;
+      const iframe = document.getElementById("kwik-form-019f8575-e52f-7c4d-ada4-c513fab45310");
+      if (iframe && Number(event.data.height) > 0) {
+        iframe.style.height = event.data.height + "px";
+      }
+    });
+  </script>
+</body>
+</html>
