@@ -1,27 +1,23 @@
-INSTANT SOLUTIONS — PÁGINA DE AGENDAMENTO
 
-URL prevista:
-https://solucoes.instant.com.br/agendamento/
 
-Arquivos:
-- index.html
-- luciane-ferrari.jpg
-- luisa.jpg
+ATENDIMENTO COM IA
 
-COMO ALTERAR A DISPONIBILIDADE
+A página também inclui:
+- Íria: SDR IA por chat, disponível 24x7.
+- Natália: SDR IA por voz, disponível 24x7.
 
-No final do arquivo index.html, localize:
+Os links atuais estão configurados provisoriamente para:
+- Íria: WhatsApp comercial da Instant.
+- Natália: telefone comercial da Instant.
 
-available: true,
-returnDate: "",
+Quando os canais próprios das IAs estiverem publicados, substitua os campos
+"actionUrl" no final do arquivo index.html.
 
-Para colocar uma profissional como indisponível:
 
-available: false,
-returnDate: "18 de agosto de 2026",
+AVATARES DAS SDRs DE IA
 
-A profissional continuará visível, mas o botão de agendamento ficará desabilitado.
+Arquivos incluídos:
+- iria-sdr.png
+- natalia-sdr.png
 
-Links configurados:
-Luciane: https://calendar.app.google/luciane
-Luisa: https://calendar.app.google/luisa
+As imagens já estão configuradas nos cards da Íria e da Natália no index.html.

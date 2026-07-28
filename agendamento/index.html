@@ -361,6 +361,53 @@
       font-weight: 700;
     }
 
+
+    .profile-card.ai-card {
+      background:
+        radial-gradient(circle at top right, rgba(20, 120, 207, .12), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f5faff 100%);
+      border-color: #cfe4f7;
+    }
+
+    .ai-avatar {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #cfe4f7;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.9), transparent 20%),
+        linear-gradient(145deg, #dff2ff, #a7d5f5);
+      color: var(--primary-dark);
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,.45);
+    }
+
+    .ai-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #e7f3ff;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .ai-note {
+      margin-top: 10px !important;
+      font-size: 13px !important;
+      color: var(--primary-dark) !important;
+      font-weight: 700;
+    }
+
     @media (max-width: 900px) {
       .cards { grid-template-columns: 1fr; }
       .profile-card { grid-template-columns: 170px 1fr; }
@@ -426,7 +473,7 @@
         <span class="eyebrow">Agendamento comercial</span>
         <h1>Vamos conversar sobre os desafios da sua empresa?</h1>
         <p>
-          Escolha uma de nossas gerentes de contas e encontre o melhor horário para conversar
+          Escolha entre atendimento humano ou nossos SDRs de inteligência artificial para conversar
           sobre atendimento, vendas, telefonia em nuvem, governança de WhatsApp e inteligência artificial.
         </p>
 
@@ -453,10 +500,9 @@
     <section id="equipe" class="team-section">
       <div class="container">
         <div class="section-header">
-          <h2>Escolha quem irá atendê-lo</h2>
+          <h2>Escolha como deseja ser atendido</h2>
           <p>
-            As duas profissionais estão preparadas para entender sua necessidade e encaminhar
-            sua empresa para a solução mais adequada.
+            Nossa equipe humana e nossos SDRs de IA estão preparados para responder dúvidas, entender sua necessidade e encaminhar sua empresa para a solução mais adequada.
           </p>
         </div>
 
@@ -511,10 +557,11 @@
     const team = [
       {
         id: "luisa",
+        type: "human",
         name: "Luisa Viana",
         role: "Gerente de Contas",
         image: "luisa.jpg",
-        calendar: "https://calendly.com/vianaluisa/comercial",
+        calendar: "https://calendar.app.google/luisa",
         available: true,
         returnDate: "",
         description:
@@ -524,16 +571,45 @@
       },
       {
         id: "luciane",
+        type: "human",
         name: "Luciane Ferrari",
         role: "Gerente de Contas",
         image: "luciane-ferrari.jpg",
         calendar: "https://calendar.app.google/luciane",
-        available: false,
-        returnDate: "10 de agosto de 2026",
+        available: true,
+        returnDate: "",
         description:
           "Formada em Hotelaria e Gestão de Marketing, construiu sua carreira com foco no relacionamento e na experiência do cliente. Faz parte da Instant Solutions desde 2018.",
         specialty:
           "Indicada para instituições financeiras, corretoras, assessorias de investimentos, fintechs e empresas com demandas de compliance."
+      },
+      {
+        id: "iria",
+        type: "ai",
+        name: "Íria",
+        role: "SDR IA — Atendimento por chat",
+        image: "iria-sdr.png",
+        actionUrl: "https://wa.me/551140636100?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20com%20a%20%C3%8Dria%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Instant.",
+        actionLabel: "Conversar com Íria",
+        available: true,
+        description:
+          "Atendimento comercial por chat, disponível 24 horas por dia. Responde dúvidas sobre Kwik, InstantVoice, Kwik Scout e Córtex.",
+        specialty:
+          "Quando necessário, encaminha a conversa para uma pessoa da equipe comercial ou ajuda no agendamento de uma reunião."
+      },
+      {
+        id: "natalia",
+        type: "ai",
+        name: "Natália",
+        role: "SDR IA — Atendimento por voz",
+        image: "natalia-sdr.png",
+        actionUrl: "tel:+551140636100",
+        actionLabel: "Falar com Natália",
+        available: true,
+        description:
+          "Atendimento comercial por voz com inteligência artificial, disponível 24 horas por dia para apresentar nossas soluções e responder dúvidas iniciais.",
+        specialty:
+          "Quando a solicitação exige análise humana, encaminha o contato para a equipe comercial ou orienta o agendamento de uma reunião."
       }
     ];
 
@@ -541,36 +617,50 @@
       const cards = document.getElementById("cards");
 
       cards.innerHTML = team.map(person => {
+        const isAI = person.type === "ai";
         const statusClass = person.available ? "available" : "unavailable";
-        const statusText = person.available ? "Horários disponíveis" : "Temporariamente indisponível";
-        const cardClass = person.available ? "" : " unavailable";
+        const statusText = person.available
+          ? (isAI ? "Disponível 24x7" : "Horários disponíveis")
+          : "Temporariamente indisponível";
+        const cardClass = `${person.available ? "" : " unavailable"}${isAI ? " ai-card" : ""}`;
 
-        const action = person.available
-          ? `
-            <a
-              class="button button-primary"
-              href="${person.calendar}"
-              target="_blank"
-              rel="noopener"
-              aria-label="Agendar uma reunião com ${person.name}"
-            >
+        let visual;
+        if (isAI) {
+          visual = `<img class="profile-photo" src="${person.image}" alt="Avatar da SDR de inteligência artificial ${person.name}" />`;
+        } else {
+          visual = `<img class="profile-photo" src="${person.image}" alt="${person.name}" />`;
+        }
+
+        let action;
+        if (!person.available) {
+          action = `<span class="button button-disabled" aria-disabled="true">Atendimento indisponível</span>`;
+        } else if (isAI) {
+          action = `
+            <a class="button button-primary" href="${person.actionUrl}" target="_blank" rel="noopener" aria-label="${person.actionLabel}">
+              ${person.actionLabel}
+            </a>
+          `;
+        } else {
+          action = `
+            <a class="button button-primary" href="${person.calendar}" target="_blank" rel="noopener" aria-label="Agendar uma reunião com ${person.name}">
               Agendar com ${person.name.split(" ")[0]}
             </a>
-          `
-          : `
-            <span class="button button-disabled" aria-disabled="true">
-              Agenda indisponível
-            </span>
           `;
+        }
 
         const returnInfo = !person.available && person.returnDate
           ? `<p class="return-info">Retorno previsto para ${person.returnDate}.</p>`
           : "";
 
+        const aiLabel = isAI ? `<div class="ai-label">Inteligência artificial</div>` : "";
+        const aiNote = isAI
+          ? `<p class="ai-note">Atendimento inicial automatizado. Você poderá solicitar uma pessoa a qualquer momento.</p>`
+          : "";
+
         return `
           <article class="profile-card${cardClass}">
             <div class="profile-photo-wrap">
-              <img class="profile-photo" src="${person.image}" alt="${person.name}" />
+              ${visual}
               <div class="status-badge ${statusClass}">
                 <span class="status-dot"></span>
                 ${statusText}
@@ -578,14 +668,14 @@
             </div>
 
             <div class="profile-content">
+              ${aiLabel}
               <h3>${person.name}</h3>
               <div class="role">${person.role}</div>
               <p>${person.description}</p>
               <p class="specialty">${person.specialty}</p>
+              ${aiNote}
               ${returnInfo}
-              <div class="card-actions">
-                ${action}
-              </div>
+              <div class="card-actions">${action}</div>
             </div>
           </article>
         `;
