@@ -1,0 +1,27 @@
+INSTANT SOLUTIONS — PÁGINA DE AGENDAMENTO
+
+URL prevista:
+https://solucoes.instant.com.br/agendamento/
+
+Arquivos:
+- index.html
+- luciane-ferrari.jpg
+- luisa.jpg
+
+COMO ALTERAR A DISPONIBILIDADE
+
+No final do arquivo index.html, localize:
+
+available: true,
+returnDate: "",
+
+Para colocar uma profissional como indisponível:
+
+available: false,
+returnDate: "18 de agosto de 2026",
+
+A profissional continuará visível, mas o botão de agendamento ficará desabilitado.
+
+Links configurados:
+Luciane: https://calendar.app.google/luciane
+Luisa: https://calendar.app.google/luisa
