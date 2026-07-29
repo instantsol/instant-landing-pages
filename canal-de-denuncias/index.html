@@ -1,1 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Canal de Denúncias online da Instant Solutions. Implantação rápida, chatbot personalizado, protocolo de acompanhamento, gestão por cards e classificação automática com IA." />
+  <meta name="theme-color" content="#092747" />
+  <title>Canal de Denúncias Corporativo | Segurança e Governança</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #092747;
+      --navy-2: #061b31;
+      --blue: #0b75d1;
+      --blue-2: #21a7e8;
+      --cyan: #dff5ff;
+      --green: #18a57b;
+      --green-soft: #e9fbf5;
+      --gold: #f4b740;
+      --text: #172638;
+      --muted: #5d6c7b;
+      --line: #dfe8ef;
+      --surface: #f4f8fb;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(9, 39, 71, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.55;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--navy-2);
+      color: #d9eaf8;
+      font-size: 13px;
+      text-align: center;
+      padding: 8px 16px;
+    }
+
+    .topbar strong { color: #fff; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(223,232,239,.9);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand img { width: 188px; height: auto; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a { text-decoration: none; color: #38506a; }
+    .nav-links a:hover { color: var(--blue); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 12px;
+      border: 0;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), #045cab);
+      box-shadow: 0 12px 28px rgba(11,117,209,.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(11,117,209,.3); }
+
+    .btn-light {
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.65);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(33,167,232,.28), transparent 27%),
+        radial-gradient(circle at 13% 90%, rgba(24,165,123,.18), transparent 28%),
+        linear-gradient(135deg, var(--navy-2), var(--navy) 58%, #0b477c);
+      color: #fff;
+      padding: 92px 0 86px;
+    }
+
+    .hero:before,
+    .hero:after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+    }
+    .hero:before { width: 540px; height: 540px; right: -260px; top: -250px; }
+    .hero:after { width: 360px; height: 360px; right: -100px; top: -130px; }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.03fr .97fr;
+      gap: 68px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #ccecff;
+      background: rgba(33,167,232,.12);
+      border: 1px solid rgba(116,213,255,.25);
+    }
+
+    h1, h2, h3 { font-family: Manrope, Inter, sans-serif; margin-top: 0; }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 67px);
+      line-height: 1.04;
+      letter-spacing: -.04em;
+      margin: 22px 0 22px;
+    }
+
+    .hero-sub {
+      max-width: 680px;
+      font-size: 19px;
+      color: #d9e8f5;
+      margin: 0 0 28px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px 18px;
+      margin: 28px 0 34px;
+    }
+
+    .hero-point {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #eef8ff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .check {
+      flex: 0 0 21px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: rgba(24,165,123,.2);
+      color: #6aebc7;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      margin-top: 1px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .microcopy { margin-top: 14px; font-size: 12px; color: #afc7da; }
+
+    .product-visual {
+      position: relative;
+      min-height: 510px;
+    }
+
+    .mock-window {
+      position: absolute;
+      inset: 28px 0 40px 34px;
+      background: rgba(255,255,255,.98);
+      border-radius: 24px;
+      box-shadow: 0 35px 90px rgba(0,0,0,.25);
+      overflow: hidden;
+      color: var(--text);
+      transform: rotate(1deg);
+    }
+
+    .mock-head {
+      height: 58px;
+      background: #f7fbfd;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .dots { display: flex; gap: 7px; }
+    .dots span { width: 9px; height: 9px; border-radius: 50%; background: #bfd2df; }
+    .secure { font-size: 11px; color: var(--green); font-weight: 800; }
+
+    .mock-body { display: grid; grid-template-columns: 78px 1fr; height: calc(100% - 58px); }
+    .mock-side { background: var(--navy); padding: 18px 14px; display: flex; flex-direction: column; gap: 12px; }
+    .mock-side i { display: block; width: 42px; height: 10px; border-radius: 20px; background: rgba(255,255,255,.19); }
+    .mock-side i:first-child { height: 42px; background: linear-gradient(135deg,var(--blue-2),var(--blue)); border-radius: 12px; }
+
+    .mock-content { background: #f7fafc; padding: 22px; }
+    .mock-title { font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+    .mini-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .mini-card { background: #fff; border: 1px solid #e3edf3; border-radius: 14px; padding: 13px; }
+    .mini-card b { display: block; font-size: 20px; color: var(--navy); }
+    .mini-card span { font-size: 9px; color: var(--muted); }
+
+    .case-card {
+      margin-top: 14px;
+      background: #fff;
+      border: 1px solid #e3edf3;
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+    .case-line { height: 7px; border-radius: 20px; background: #e8f0f5; margin: 7px 0; }
+    .case-line:nth-child(2){ width: 72%; }
+    .tag { padding: 6px 9px; font-size: 9px; font-weight: 800; border-radius: 999px; color: #9a5f00; background: #fff4d7; }
+
+    .chat-card {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 265px;
+      background: #fff;
+      color: var(--text);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      transform: rotate(-2deg);
+      border: 1px solid #e6eef4;
+    }
+    .chat-head { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
+    .bot-icon { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg,var(--blue),var(--blue-2)); color:#fff; font-weight: 800; }
+    .chat-head b { font-size: 13px; display: block; }
+    .chat-head span { font-size: 10px; color: var(--green); font-weight: 700; }
+    .bubble { padding: 10px 12px; border-radius: 12px 12px 12px 4px; background: var(--surface); font-size: 11px; margin-bottom: 8px; }
+    .bubble.user { margin-left: 42px; background: #e7f5ff; border-radius: 12px 12px 4px 12px; }
+
+    .trust-strip {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      min-height: 104px;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+    }
+    .trust-item:last-child { border-right: 0; }
+    .trust-icon { width: 42px; height: 42px; border-radius: 12px; display:grid; place-items:center; background: var(--cyan); color: var(--blue); font-weight:800; }
+    .trust-item b { display:block; font-size:14px; color:var(--navy); }
+    .trust-item span { font-size:11px; color:var(--muted); }
+
+    section { padding: 92px 0; }
+    .section-head { max-width: 780px; margin: 0 auto 48px; text-align: center; }
+    .section-kicker { color: var(--blue); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+    h2 { font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -.03em; margin: 12px 0 16px; color: var(--navy); }
+    .section-head p { color: var(--muted); font-size: 17px; margin: 0; }
+
+    .problem { background: var(--surface); }
+    .problem-grid { display:grid; grid-template-columns: .9fr 1.1fr; gap: 52px; align-items:center; }
+    .problem-copy p { color: var(--muted); font-size: 17px; }
+    .risk-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .risk-row { display:flex; gap:14px; align-items:flex-start; padding: 15px 0; border-bottom:1px solid var(--line); }
+    .risk-row:last-child { border-bottom:0; }
+    .risk-num { flex:0 0 34px; width:34px; height:34px; border-radius:10px; display:grid; place-items:center; color:#fff; background:var(--navy); font-weight:800; }
+    .risk-row b { display:block; margin-bottom:3px; color:var(--navy); }
+    .risk-row span { color:var(--muted); font-size:13px; }
+
+    .feature-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .feature-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 26px;
+      background: #fff;
+      transition:.2s ease;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color:#c8dce9; }
+    .feature-icon { width:48px; height:48px; display:grid; place-items:center; border-radius:14px; background:var(--cyan); color:var(--blue); font-size:22px; margin-bottom:18px; }
+    .feature-card h3 { font-size:18px; margin-bottom:8px; color:var(--navy); }
+    .feature-card p { margin:0; color:var(--muted); font-size:14px; }
+
+    .steps { background: var(--navy); color:#fff; }
+    .steps h2 { color:#fff; }
+    .steps .section-head p { color:#c6d8e8; }
+    .steps-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; }
+    .step-card { position:relative; padding:28px 22px; border-radius:18px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+    .step-no { font-family:Manrope; font-size:34px; font-weight:800; color:#63cdfa; }
+    .step-card h3 { font-size:17px; margin:8px 0; }
+    .step-card p { color:#c9d9e6; font-size:13px; margin:0; }
+
+    .compare-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:24px; align-items:stretch; }
+    .compare-card { border-radius:var(--radius); padding:34px; border:1px solid var(--line); }
+    .compare-card.complex { background:#f7f9fb; }
+    .compare-card.instant { background:linear-gradient(145deg,#eef9ff,#f0fff9); border-color:#bfe4f6; box-shadow:var(--shadow); }
+    .compare-label { display:inline-block; padding:7px 11px; border-radius:999px; font-size:11px; font-weight:800; background:#e5e9ed; color:#596773; margin-bottom:20px; }
+    .instant .compare-label { background:#d8f5e9; color:#117657; }
+    .compare-card h3 { font-size:26px; color:var(--navy); margin-bottom:18px; }
+    .compare-list { display:grid; gap:12px; }
+    .compare-list div { display:flex; gap:10px; font-size:14px; color:#405367; }
+    .instant .compare-list div { color:#254e44; font-weight:600; }
+
+    .proposal {
+      background: linear-gradient(135deg,#eaf7ff,#f1fffb);
+    }
+    .proposal-wrap {
+      display:grid;
+      grid-template-columns: .83fr 1.17fr;
+      gap:42px;
+      align-items:start;
+    }
+    .proposal-copy { position:sticky; top:112px; }
+    .proposal-copy h2 { margin-top:12px; }
+    .proposal-copy p { color:var(--muted); font-size:16px; }
+    .time-card { margin-top:26px; display:flex; gap:14px; align-items:center; padding:18px; border-radius:16px; background:#fff; border:1px solid #d8e8f1; box-shadow:0 12px 34px rgba(9,39,71,.08); }
+    .clock { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,var(--green),#0d8664); font-size:24px; }
+    .time-card b { display:block; color:var(--navy); font-size:16px; }
+    .time-card span { display:block; color:var(--muted); font-size:12px; }
+    .form-shell { background:#fff; border:1px solid #dbe8ef; border-radius:24px; padding:18px; box-shadow:var(--shadow); overflow:hidden; }
+    .form-top { padding:14px 14px 8px; text-align:center; }
+    .form-top b { display:block; font-size:17px; color:var(--navy); }
+    .form-top span { color:var(--muted); font-size:12px; }
+
+    .faq { background:#fff; }
+    .faq-list { max-width:850px; margin:0 auto; border-top:1px solid var(--line); }
+    details { border-bottom:1px solid var(--line); padding:19px 0; }
+    summary { cursor:pointer; list-style:none; font-weight:700; color:var(--navy); display:flex; justify-content:space-between; gap:16px; }
+    summary::-webkit-details-marker { display:none; }
+    summary:after { content:"+"; font-size:22px; color:var(--blue); }
+    details[open] summary:after { content:"−"; }
+    details p { color:var(--muted); font-size:14px; margin:12px 30px 0 0; }
+
+
+    .experience-band { background:linear-gradient(135deg,#061b31,#0b477c); color:#fff; }
+    .experience-band h2 { color:#fff; }
+    .experience-band .section-head p { color:#c9dcec; }
+    .experience-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch; }
+    .experience-card { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:22px; padding:28px; }
+    .experience-card h3 { font-size:24px; margin:0 0 10px; }
+    .experience-card p { color:#d5e5f1; font-size:14px; margin:0 0 20px; }
+    .video-frame { position:relative; width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:#000; box-shadow:0 18px 45px rgba(0,0,0,.25); }
+    .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .choice-note { margin-top:16px; padding:14px 16px; border-radius:14px; background:rgba(255,255,255,.08); color:#d7e8f4; font-size:13px; }
+    .choice-note strong { color:#fff; }
+    .ab-badge { display:inline-flex; padding:7px 11px; border-radius:999px; background:#e7f6ff; color:#0b75d1; font-weight:800; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+
+    .final-cta {
+      padding:0 0 92px;
+    }
+    .cta-box {
+      border-radius:28px;
+      padding:54px;
+      background:linear-gradient(135deg,var(--navy-2),var(--navy));
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:34px;
+      box-shadow:var(--shadow);
+    }
+    .cta-box h2 { color:#fff; margin:0 0 10px; font-size:34px; }
+    .cta-box p { color:#c8d9e7; margin:0; max-width:680px; }
+
+    footer { background:#06192d; color:#b9ccdc; padding:48px 0 24px; }
+    .footer-grid { display:grid; grid-template-columns:1.2fr .8fr .8fr; gap:40px; }
+    .footer-logo { width:190px; height:auto; display:block; background:#fff; padding:12px 16px; border-radius:14px; filter:none; opacity:1; margin-bottom:16px; }
+    footer p, footer a { font-size:13px; color:#a9bed0; text-decoration:none; }
+    footer h4 { color:#fff; margin:0 0 14px; }
+    .socials { display:flex; gap:10px; margin-top:18px; }
+    .socials img { width:28px; height:28px; object-fit:contain; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.1); margin-top:34px; padding-top:20px; display:flex; justify-content:space-between; gap:20px; font-size:11px; color:#7f99ac; }
+
+    .whatsapp {
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:60;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#1cc56b;
+      color:#fff;
+      text-decoration:none;
+      box-shadow:0 14px 34px rgba(0,0,0,.24);
+      font-size:26px;
+      font-weight:800;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links a:not(.btn) { display:none; }
+      .hero-grid, .problem-grid, .proposal-wrap { grid-template-columns:1fr; }
+      .hero { padding-top:68px; }
+      .product-visual { min-height:460px; max-width:650px; width:100%; margin:0 auto; }
+      .trust-grid { grid-template-columns:repeat(2,1fr); }
+      .trust-item:nth-child(2) { border-right:0; }
+      .trust-item:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+      .feature-grid { grid-template-columns:repeat(2,1fr); }
+      .steps-grid { grid-template-columns:repeat(2,1fr); }
+      .proposal-copy { position:static; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width:min(100% - 28px,1160px); }
+      .topbar { font-size:11px; }
+      .nav { min-height:66px; }
+      .brand img { width:154px; }
+      .nav .btn { min-height:42px; padding:0 14px; font-size:12px; }
+      .hero { padding:58px 0 64px; }
+      h1 { font-size:39px; }
+      .hero-sub { font-size:16px; }
+      .hero-points { grid-template-columns:1fr; }
+      .product-visual { min-height:400px; }
+      .mock-window { inset:18px 0 34px 18px; }
+      .chat-card { width:225px; }
+      .trust-grid, .feature-grid, .steps-grid, .compare-grid, .experience-grid, .footer-grid { grid-template-columns:1fr; }
+      .trust-item { border-right:0; border-bottom:1px solid var(--line); }
+      section { padding:70px 0; }
+      .cta-box { padding:34px 24px; display:block; }
+      .cta-box .btn { margin-top:24px; width:100%; }
+      .footer-bottom { display:block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Canal de Denúncias Corporativo:</strong> confidencialidade, governança e rastreabilidade para cada relato.
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://www.instant.com.br/" target="_blank" rel="noopener">
+        <img src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions" />
+      </a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#teste-solucao">Testar solução</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#proposta" class="btn btn-primary">Receber proposta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Canal de Denúncias Instant</span>
+          <h1>Proteja as pessoas e fortaleça a governança da sua empresa.</h1>
+          <p class="hero-sub">
+            Implemente um Canal de Denúncias corporativo para receber, classificar, acompanhar e apurar relatos com confidencialidade, rastreabilidade e ativação em até 72 horas.
+          </p>
+
+          <div class="hero-points">
+            <div class="hero-point"><span class="check">✓</span><span>Chatbot com identidade da sua empresa</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Protocolo para acompanhamento</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Classificação por categoria e criticidade com IA</span></div>
+            <div class="hero-point"><span class="check">✓</span><span>Gestão das denúncias em cards</span></div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#proposta" class="btn btn-primary">Solicitar proposta</a>
+            <a href="https://bot.kwik.app.br/jornada-denuncias-mod01-v01" target="_blank" rel="noopener" class="btn btn-light">Testar o bot 24x7</a>
+          </div>
+          <div class="microcopy">Conheça a solução na prática e solicite uma proposta quando estiver pronto para avançar.</div>
+        </div>
+
+        <div class="product-visual" aria-label="Representação visual do chatbot e painel de gestão">
+          <div class="mock-window">
+            <div class="mock-head">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <span class="secure">● Ambiente seguro</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-side"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="mock-content">
+                <div class="mock-title">Gestão de denúncias</div>
+                <div class="mini-stats">
+                  <div class="mini-card"><b>08</b><span>Em análise</span></div>
+                  <div class="mini-card"><b>03</b><span>Alta criticidade</span></div>
+                  <div class="mini-card"><b>12</b><span>Concluídas</span></div>
+                </div>
+                <div class="case-card">
+                  <div>
+                    <div style="font-size:11px;font-weight:800;color:#092747;">Protocolo #2026-0184</div>
+                    <div class="case-line"></div><div class="case-line"></div>
+                  </div>
+                  <span class="tag">Alta</span>
+                </div>
+                <div class="case-card">
+                  <div>
+                    <div style="font-size:11px;font-weight:800;color:#092747;">Protocolo #2026-0183</div>
+                    <div class="case-line"></div><div class="case-line"></div>
+                  </div>
+                  <span class="tag" style="background:#eaf5ff;color:#0b75d1;">Média</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-card">
+            <div class="chat-head">
+              <div class="bot-icon">IA</div>
+              <div><b>Canal de Denúncias</b><span>● Disponível 24 horas</span></div>
+            </div>
+            <div class="bubble">Você pode registrar sua denúncia com segurança. Para começar, selecione o tipo de relato.</div>
+            <div class="bubble user">Assédio moral</div>
+            <div class="bubble">Certo. Vou conduzir você por algumas perguntas importantes.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item"><div class="trust-icon">72h</div><div><b>Ativação rápida</b><span>Canal configurado em até 72 horas.</span></div></div>
+        <div class="trust-item"><div class="trust-icon">IA</div><div><b>Triagem inteligente</b><span>Categoria e criticidade sugeridas automaticamente.</span></div></div>
+        <div class="trust-item"><div class="trust-icon">BR</div><div><b>Infraestrutura no Brasil</b><span>Tecnologia própria e aderência à LGPD.</span></div></div>
+        <div class="trust-item"><div class="trust-icon">24</div><div><b>Disponível 24x7</b><span>Acesso por URL ou widget no site.</span></div></div>
+      </div>
+    </div>
+
+    <section class="problem">
+      <div class="container problem-grid">
+        <div class="problem-copy">
+          <span class="section-kicker">Menos atrito, mais proteção</span>
+          <h2>Não deixe a implantação de um canal essencial virar um projeto complexo.</h2>
+          <p>
+            Muitas empresas adiam a decisão porque imaginam uma implantação longa, cara e difícil de administrar. A proposta da Instant é diferente: oferecer o essencial para colocar o canal em funcionamento rapidamente, com uma experiência clara para quem denuncia e para quem apura.
+          </p>
+          <p>
+            O Canal de Denúncias apoia as medidas de prevenção e combate ao assédio previstas na Lei nº 14.457/2022 e contribui para a gestão de riscos psicossociais no contexto da NR-1.
+          </p>
+          <a href="#proposta" class="btn btn-primary">Quero simplificar a implantação</a>
+        </div>
+
+        <div class="risk-box">
+          <div class="risk-row"><div class="risk-num">1</div><div><b>Receba o relato em um ambiente próprio</b><span>Canal identificado com o nome, a marca e a linguagem da sua empresa.</span></div></div>
+          <div class="risk-row"><div class="risk-num">2</div><div><b>Organize automaticamente a demanda</b><span>Cada denúncia gera um card para o time responsável, evitando controles paralelos.</span></div></div>
+          <div class="risk-row"><div class="risk-num">3</div><div><b>Priorize o que exige mais atenção</b><span>A IA auxilia a classificar categoria e criticidade para acelerar a triagem inicial.</span></div></div>
+          <div class="risk-row"><div class="risk-num">4</div><div><b>Mantenha o denunciante informado</b><span>O acompanhamento é realizado por protocolo, sem depender de ligações ou e-mails.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recursos">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">O essencial para começar bem</span>
+          <h2>Recursos pensados para simplificar o recebimento e a gestão das denúncias</h2>
+          <p>Uma estrutura objetiva para colocar o canal no ar rapidamente e permitir que a equipe responsável trabalhe com mais organização e rastreabilidade.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-icon">◫</div><h3>Gestão por cards</h3><p>Cada denúncia abre automaticamente um card para a equipe responsável, com dados e histórico centralizados.</p></article>
+          <article class="feature-card"><div class="feature-icon">✦</div><h3>Classificação com IA</h3><p>Sugestão automática de categoria e criticidade para apoiar a triagem e a priorização dos casos.</p></article>
+          <article class="feature-card"><div class="feature-icon">⌁</div><h3>Widget ou URL exclusiva</h3><p>Disponibilize o canal no seu site ou utilize uma URL personalizada com a identificação da empresa.</p></article>
+          <article class="feature-card"><div class="feature-icon">◎</div><h3>Identidade personalizada</h3><p>Inclua logotipo, nome da empresa e fraseologia adaptada à política e à comunicação da organização.</p></article>
+          <article class="feature-card"><div class="feature-icon">#</div><h3>Acompanhamento por protocolo</h3><p>O denunciante recebe um protocolo para consultar o andamento e visualizar a resposta disponibilizada.</p></article>
+          <article class="feature-card"><div class="feature-icon">⚡</div><h3>Ativação em até 72 horas</h3><p>Implantação ágil, sem projetos extensos, desde que as informações necessárias sejam fornecidas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" style="color:#63cdfa;">Jornada simples</span>
+          <h2>Do relato à apuração em quatro etapas</h2>
+          <p>O fluxo reduz esforço para quem denuncia e organiza o trabalho de quem precisa analisar cada caso.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card"><div class="step-no">01</div><h3>Registro da denúncia</h3><p>O usuário acessa o chatbot pela URL ou pelo widget e informa os dados necessários.</p></article>
+          <article class="step-card"><div class="step-no">02</div><h3>Geração do protocolo</h3><p>Ao concluir, recebe um número de protocolo para acompanhar a solicitação.</p></article>
+          <article class="step-card"><div class="step-no">03</div><h3>Triagem e abertura do card</h3><p>A denúncia é organizada no painel, com classificação automática apoiada por IA.</p></article>
+          <article class="step-card"><div class="step-no">04</div><h3>Análise e retorno</h3><p>A equipe responsável atualiza o caso e disponibiliza a resposta para consulta pelo protocolo.</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="experience-band" id="teste-solucao">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" style="color:#63cdfa;">Conheça antes de decidir</span>
+          <h2>Teste o fluxo 24x7 ou assista à demonstração</h2>
+          <p>Veja como o denunciante registra o relato, escolhe entre anonimato ou identificação, envia evidências e recebe um protocolo para acompanhamento.</p>
+        </div>
+        <div class="experience-grid">
+          <article class="experience-card">
+            <span class="ab-badge">Demonstração interativa</span>
+            <h3 style="margin-top:16px;">Experimente o chatbot agora</h3>
+            <p>O ambiente de demonstração está disponível 24 horas por dia. Navegue pelo fluxo e avalie a experiência antes de solicitar a proposta.</p>
+            <a class="btn btn-primary" href="https://bot.kwik.app.br/jornada-denuncias-mod01-v01" target="_blank" rel="noopener">Testar o Canal de Denúncias</a>
+            <div class="choice-note"><strong>Escolha do denunciante:</strong> durante o fluxo, a própria pessoa decide se deseja registrar a denúncia anonimamente ou se identificar.</div>
+          </article>
+          <article class="experience-card">
+            <span class="ab-badge">Vídeo demonstrativo</span>
+            <h3 style="margin-top:16px;">Assista ao fluxo completo</h3>
+            <p>Veja em poucos minutos como funciona a jornada de registro e acompanhamento da denúncia.</p>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/VuZH4rryQsg" title="Demonstração do Canal de Denúncias Instant Solutions" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Escolha consciente</span>
+          <h2>Uma alternativa para quem precisa de rapidez, não de complexidade</h2>
+          <p>O foco está no que realmente ajuda a empresa a começar: um canal funcional, personalizado e fácil de administrar.</p>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card complex">
+            <span class="compare-label">Modelo tradicional</span>
+            <h3>Projetos extensos e excesso de recursos</h3>
+            <div class="compare-list">
+              <div><span>×</span><span>Implantação demorada e dependente de várias etapas.</span></div>
+              <div><span>×</span><span>Curva de aprendizado maior para a equipe.</span></div>
+              <div><span>×</span><span>Funcionalidades complexas que podem não ser utilizadas.</span></div>
+              <div><span>×</span><span>Mais atrito para colocar o canal em funcionamento.</span></div>
+            </div>
+          </div>
+
+          <div class="compare-card instant">
+            <span class="compare-label">Canal de Denúncias Instant</span>
+            <h3>Rápido para implantar. Simples para usar.</h3>
+            <div class="compare-list">
+              <div><span>✓</span><span>Ativação prevista em até 72 horas.</span></div>
+              <div><span>✓</span><span>Experiência objetiva para o denunciante.</span></div>
+              <div><span>✓</span><span>Gestão visual e organizada para a equipe.</span></div>
+              <div><span>✓</span><span>Personalização com a identidade da empresa.</span></div>
+              <div><span>✓</span><span>Inteligência artificial para apoiar a triagem.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proposal" id="proposta">
+      <div class="container proposal-wrap">
+        <div class="proposal-copy">
+          <span class="section-kicker">Próximo passo simples</span>
+          <h2>Receba uma proposta alinhada à estrutura da sua empresa.</h2>
+          <p>
+            Informe os dados da organização para receber por e-mail a proposta do Canal de Denúncias. A solução pode atender desde operações padronizadas até estruturas corporativas com múltiplos administradores, níveis de permissão, IA e integrações.
+          </p>
+          <div class="time-card">
+            <div class="clock">30</div>
+            <div><b>Proposta enviada em até 30 minutos</b><span>Após o preenchimento, você recebe as condições comerciais por e-mail para avaliar com tranquilidade.</span></div>
+          </div>
+          <div style="margin-top:18px;color:#6a7b8b;font-size:12px;">Ao enviar, você autoriza o contato da Instant Solutions para tratar desta solicitação.</div>
+        </div>
+
+        <div class="form-shell">
+          <div class="form-top">
+            <b>Solicite sua proposta</b>
+            <span>Leva poucos minutos. Sem compromisso.</span>
+          </div>
+
+          <iframe
+              id="kwik-form-019fafd6-afc9-7ec9-8f45-c9031ae08d48"
+              src="https://kwik.app.br/form/019fafd6-afc9-7ec9-8f45-c9031ae08d48"
+              style="width:100%; border:none;"
+              height="766px"
+              loading="lazy"
+              scrolling="no"
+              allow="clipboard-write"
+              title="Formulário para solicitação de proposta do Canal de Denúncias"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Dúvidas frequentes</span>
+          <h2>Informações importantes antes de contratar</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>O canal pode ser usado de forma anônima?</summary><p>Sim. O fluxo é preparado para que o próprio denunciante escolha se deseja registrar a denúncia de forma anônima ou se identificar durante o atendimento.</p></details>
+          <details><summary>Como o denunciante acompanha o caso?</summary><p>Após concluir o relato, o usuário recebe um protocolo para consultar o andamento e a última resposta pública disponibilizada pela equipe responsável.</p></details>
+          <details><summary>Onde o canal pode ser disponibilizado?</summary><p>O acesso pode ocorrer por uma URL exclusiva, como bot.kwik.app.br/suaempresa-canal-denuncias, ou por um widget incorporado ao site da empresa.</p></details>
+          <details><summary>O chatbot pode usar a identidade da minha empresa?</summary><p>Sim. É possível incluir o logotipo, o nome da organização e personalizar frases e orientações exibidas no canal.</p></details>
+          <details><summary>É possível editar o fluxo do chatbot?</summary><p>Não. A estrutura do fluxo permanece padrão. A personalização disponível contempla identidade visual e fraseologia, o que ajuda a manter a implantação simples e rápida.</p></details>
+          <details><summary>A solução garante conformidade legal?</summary><p>A tecnologia apoia a implementação do canal e a organização dos relatos. A definição de políticas internas, procedimentos de apuração e validação jurídica permanece sob responsabilidade da empresa e de seus assessores.</p></details>
+          <details><summary>O prazo de 72 horas é garantido?</summary><p>A ativação pode ocorrer em até 72 horas após a contratação e o recebimento das informações, conteúdos e identidade visual necessários para a configuração.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Seu canal pode estar funcionando em poucos dias.</h2>
+            <p>Reduza o tempo entre a decisão e a implantação. Receba uma proposta personalizada e avance com uma solução simples, segura e alinhada à realidade da sua empresa.</p>
+          </div>
+          <a href="#proposta" class="btn btn-light">Solicitar proposta agora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions" />
+          <p>Tecnologia brasileira para comunicação, atendimento, automação e inteligência artificial em operações corporativas.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Instant.br/" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://www.instant.com.br/wp-content/uploads/ico_facebook-1.png" alt="" /></a>
+            <a href="https://www.instagram.com/instant.br/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://www.instant.com.br/wp-content/uploads/instagram3-1.png" alt="" /></a>
+            <a href="https://www.youtube.com/@br.instant" target="_blank" rel="noopener" aria-label="YouTube"><img src="https://www.instant.com.br/wp-content/uploads/ico_youtube-1.png" alt="" /></a>
+            <a href="https://www.linkedin.com/company/instant-solutions/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="https://www.instant.com.br/wp-content/uploads/ico_linkedin-1.png" alt="" /></a>
+          </div>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <p>Principais capitais: 4063-6100<br />Demais regiões e WhatsApp: (11) 4063-6100</p>
+          <p><a href="https://www.instant.com.br/" target="_blank" rel="noopener">www.instant.com.br</a></p>
+        </div>
+        <div>
+          <h4>Solução</h4>
+          <p><a href="#como-funciona">Como funciona</a></p>
+          <p><a href="#recursos">Recursos</a></p>
+          <p><a href="#proposta">Solicitar proposta</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Instant Solutions Tecnologia e Informática Ltda. Todos os direitos reservados.</span>
+        <span>Canal de Denúncias • Tecnologia proprietária • Infraestrutura no Brasil</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/551140636100?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20Canal%20de%20Den%C3%BAncias." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">W</a>
+
+  <script>
+    window.addEventListener("message", function(event) {
+        if (event.data?.type !== "kwik-form-height") return;
+        if (event.data.formId !== "019fafd6-afc9-7ec9-8f45-c9031ae08d48") return;
+        const iframe = document.getElementById("kwik-form-019fafd6-afc9-7ec9-8f45-c9031ae08d48");
+        if (iframe) iframe.style.height = event.data.height + "px";
+    });
+  </script>
+</body>
+</html>
