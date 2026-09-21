@@ -345,8 +345,15 @@
     .field-help{font-size:.77rem;color:var(--muted)}
     .consent{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:.82rem}
     .consent input{width:auto;margin-top:4px}
-    .question{margin-bottom:27px}
-    .question h3{margin-bottom:13px;font-size:1rem}
+    .question{
+  margin-bottom:27px;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+.question.question-blue{background:var(--soft)}
+.question.question-white{background:var(--white)}
+.question h3{margin-bottom:13px;font-size:1rem}
     .choices{display:grid;gap:9px}
     .choice{
       position:relative;
@@ -488,7 +495,9 @@
       .cta-actions{display:grid;width:100%}
       .footer-grid{align-items:flex-start;flex-direction:column}
     }
-  </style>
+  
+@media(max-width:640px){.question{padding:16px}}
+</style>
 </head>
 
 <body>
@@ -664,7 +673,7 @@
                 <p class="eyebrow">Atendimento e canais</p>
                 <h2 style="font-size:2rem">Como sua empresa conversa com os clientes?</h2>
 
-                <div class="question" data-dimension="kwik">
+                <div class="question question-blue" data-dimension="kwik">
                   <h3>1. Como os canais de atendimento são gerenciados hoje?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q1" value="1"><span>De forma separada, usando celulares, e-mails e ferramentas diferentes.</span></label>
@@ -674,7 +683,7 @@
                   </div>
                 </div>
 
-                <div class="question" data-dimension="kwik">
+                <div class="question question-white" data-dimension="kwik">
                   <h3>2. Como funciona a distribuição e o acompanhamento dos atendimentos?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q2" value="1"><span>Não há filas, SLA ou supervisão estruturada.</span></label>
@@ -689,7 +698,7 @@
                 <p class="eyebrow">Vendas e telefonia</p>
                 <h2 style="font-size:2rem">Como sua equipe transforma contatos em oportunidades?</h2>
 
-                <div class="question" data-dimension="sales">
+                <div class="question question-blue" data-dimension="sales">
                   <h3>3. O processo comercial está organizado em um funil?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q3" value="1"><span>Não. Usamos planilhas, anotações ou conversas dispersas.</span></label>
@@ -699,7 +708,7 @@
                   </div>
                 </div>
 
-                <div class="question" data-dimension="voice">
+                <div class="question question-white" data-dimension="voice">
                   <h3>4. Qual é o nível de gestão da telefonia corporativa?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q4" value="1"><span>Uso de celulares ou telefonia sem controle centralizado.</span></label>
@@ -714,7 +723,7 @@
                 <p class="eyebrow">Governança e inteligência artificial</p>
                 <h2 style="font-size:2rem">Quanto controle e automação sua operação possui?</h2>
 
-                <div class="question" data-dimension="scout">
+                <div class="question question-blue" data-dimension="scout">
                   <h3>5. Como a empresa acompanha conversas realizadas em números de WhatsApp corporativo?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q5" value="1"><span>Não acompanha; o histórico depende do aparelho ou do colaborador.</span></label>
@@ -724,7 +733,7 @@
                   </div>
                 </div>
 
-                <div class="question" data-dimension="ai">
+                <div class="question question-white" data-dimension="ai">
                   <h3>6. Como a inteligência artificial é utilizada no atendimento ou nas vendas?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q6" value="1"><span>Ainda não utilizamos IA nesses processos.</span></label>
@@ -734,7 +743,7 @@
                   </div>
                 </div>
 
-                <div class="question" data-dimension="analytics">
+                <div class="question question-blue" data-dimension="analytics">
                   <h3>7. Como os gestores acompanham produtividade, qualidade e experiência do cliente?</h3>
                   <div class="choices">
                     <label class="choice"><input type="radio" name="q7" value="1"><span>As decisões são baseadas principalmente em percepção e relatos.</span></label>
