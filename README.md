@@ -17,8 +17,8 @@ Página estática criada para a raiz `https://solucoes.instant.com.br/`.
 
 Os links dos produtos utilizam os endereços oficiais registrados nas fontes:
 
-- Kwik: `https://landing.kwik.app.br/`
-- InstantVoice: `https://landing.instant.com.br/instant-cloud-voice/`
+- Kwik: `https://solucoes.instant.com.br/kwik/`
+- InstantVoice: `https://solucoes.instant.com.br/instant-cloud-voice/`
 - Kwik Scout: `https://scout.kwik.app.br/`
 - Cortex: `https://cortex.instant.com.br`
 
@@ -35,3 +35,24 @@ O formulário comercial está incorporado na seção `#contato` por meio do form
 ## Monitoramento
 
 O aviso de cookies já registra a preferência no navegador. Os códigos de Google Analytics, Google Tag Manager e Microsoft Clarity devem ser incluídos no ponto indicado ao final do `index.html`, carregando somente quando houver autorização para cookies analíticos.
+
+## Páginas migradas do Pipz
+
+Recriadas a partir das páginas publicadas no Pipz, com imagens e scripts copiados para a pasta `assets/` de cada uma:
+
+| Pasta | Página | Endereço antigo |
+|---|---|---|
+| `scout/` | Kwik Scout | landing.kwik.app.br/scout/ |
+| `instant-cloud-voice/` | Instant Cloud Voice | landing.instant.com.br/instant-cloud-voice/ e /instant-voice/ |
+| `chat-chatbot-aais/` | Chat e ChatBot para AAIs | landing.instant.com.br/chat-chatbot-aais/ |
+| `parceiros/` | Página principal de parceiros (antiga Canais Prospecção) | landing.kwik.app.br/canais-prospeccao/ |
+| `rtm/` | Parceria RTM | landing.instant.com.br/RTM/ |
+
+As URLs antigas de landing.kwik.app.br (raiz e /kwik/) passam a apontar para a página `/kwik/` deste repositório.
+
+Essas páginas seguem o mesmo aviso de cookies da `/kwik/` (chave `instant_cookie_consent_v1`): GTM, Google Analytics, Google Ads e Clarity só carregam depois que o visitante aceita os cookies analíticos. Os formulários são do Kwik e se ajustam à altura automaticamente.
+
+Pendências conhecidas:
+
+- `rtm/`: o formulário do Pipz foi retirado e ainda falta o formulário do Kwik (procure `PENDENTE` no HTML).
+- Algumas imagens de fundo ainda carregam do Pipz (`pipz.io/shared/1465/files/...`) em `scout/`, `instant-cloud-voice/` e `chat-chatbot-aais/`. Elas precisam ser copiadas para `assets/` antes do cancelamento do Pipz.
