@@ -55,4 +55,3 @@ Essas páginas seguem o mesmo aviso de cookies da `/kwik/` (chave `instant_cooki
 Pendências conhecidas:
 
 - `rtm/`: o formulário do Pipz foi retirado e ainda falta o formulário do Kwik (procure `PENDENTE` no HTML).
-- Algumas imagens de fundo ainda carregam do Pipz (`pipz.io/shared/1465/files/...`) em `scout/`, `instant-cloud-voice/` e `chat-chatbot-aais/`. Elas precisam ser copiadas para `assets/` antes do cancelamento do Pipz.
