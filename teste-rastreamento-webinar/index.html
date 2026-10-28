@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Teste de rastreamento (interno)</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-45TNLSTHSZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-45TNLSTHSZ', { debug_mode: true, linker: { domains: ['solucoes.instant.com.br', 'kwik.app.br'] } });
+</script>
+<style>body{font:16px/1.5 Arial,sans-serif;margin:24px;color:#172638}iframe{display:block;width:100%;max-width:600px;height:640px;border:0}</style>
+</head>
+<body>
+<h1>Página interna de teste de rastreamento</h1>
+<p>Uso interno do marketing. Não divulgar. Será apagada após o teste.</p>
+<iframe id="kwik-form" title="Formulário de teste" allow="clipboard-write"></iframe>
+<script>
+(function () {
+  var base = 'https://kwik.app.br/form/01a18441-d965-793f-bbed-bebb52dd8b9f';
+  var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+  var page = new URLSearchParams(window.location.search);
+  var out = new URLSearchParams();
+  keys.forEach(function (k) { if (page.get(k)) out.set(k, page.get(k)); });
+  var q = out.toString();
+  document.getElementById('kwik-form').src = base + (q ? '?' + q : '');
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://kwik.app.br' || !e.data) return;
+    if (e.data.height) document.getElementById('kwik-form').style.height = e.data.height + 'px';
+    gtag('event', 'kwik_iframe_message', { message_keys: Object.keys(e.data).join(',') });
+  });
+})();
+</script>
+</body>
+</html>
