@@ -1,20 +1,40 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <!-- Consentimento padrão: nenhum serviço analítico é carregado antes da escolha. -->
+  <!-- Consent Mode v2: padrão definido ANTES de carregar as tags. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'denied',
-      personalization_storage: 'denied',
-      security_storage: 'granted'
+      analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied',
+      ad_personalization:'denied', functionality_storage:'denied',
+      personalization_storage:'denied', security_storage:'granted'
     });
+    gtag('set', 'ads_data_redaction', true);
+    // A escolha antiga autorizava publicidade sem indicação no botão.
+    // Por isso, a nova versão solicita consentimento novamente.
+    try {
+      var saved = JSON.parse(localStorage.getItem('instant_cookie_consent_v2'));
+      if (saved && Date.now() - saved.at < 15552000000 &&
+          ['granted','denied'].includes(saved.value)) {
+        window.instantConsent = saved.value;
+        gtag('consent','update', {
+          analytics_storage:saved.value, ad_storage:saved.value,
+          ad_user_data:saved.value, ad_personalization:saved.value,
+          functionality_storage:'denied', personalization_storage:'denied'
+        });
+      }
+    } catch(e) { /* Armazenamento indisponível: manter denied. */ }
   </script>
+  <!-- GTM carrega na abertura, inclusive sem interação com o banner. -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N4RXQ5D');
+  </script>
+  <!-- GA4 gerenciado exclusivamente pelo GTM para evitar instalação dupla. -->
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -154,121 +174,116 @@
     <div class="cookie-grid">
       <div class="cookie-copy">
         <strong id="cookie-title">Sua privacidade é importante</strong>
-        <p id="cookie-description">Utilizamos cookies necessários para o funcionamento do site. Com sua autorização, também usamos cookies analíticos para compreender a navegação, medir o desempenho e melhorar sua experiência. Você pode aceitar ou continuar apenas com os cookies necessários. Consulte nossa <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+        <p id="cookie-description">Utilizamos cookies necessários para o funcionamento do site. Com sua autorização, também usamos cookies de análise e publicidade para melhorar sua experiência e medir nossas campanhas. Sem essa autorização, a mensuração pode utilizar sinais limitados, sem cookies de análise ou publicidade. Você pode aceitar ou continuar sem esses cookies e revisar sua escolha a qualquer momento. Consulte nossa <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
       </div>
       <div class="cookie-actions">
-        <button id="cookie-necessary" type="button">Somente necessários</button>
-        <button class="accept" id="cookie-accept" type="button">Aceitar analíticos</button>
+        <button id="cookie-necessary" type="button">Continuar sem esses cookies</button>
+        <button class="accept" id="cookie-accept" type="button">Aceitar análise e publicidade</button>
       </div>
     </div>
   </section>
   <script>
-    window.addEventListener("message", function (event) {
-      if (event.data?.type !== "kwik-form-height") return;
-      if (event.data.formId !== "019ead2f-e7fd-7395-bb10-185a0b61b0da") return;
-
-      const iframe = document.getElementById("kwik-form-019ead2f-e7fd-7395-bb10-185a0b61b0da");
-      const height = Number(event.data.height);
-
-      if (iframe && Number.isFinite(height) && height > 0) {
-        iframe.style.height = height + "px";
-      }
-    });
+    (function () {
+      const formId = '019ead2f-e7fd-7395-bb10-185a0b61b0da';
+      const iframe = document.getElementById('kwik-form-' + formId);
+      const received = new Set();
+      window.addEventListener('message', function (event) {
+        if (!iframe || event.origin !== 'https://kwik.app.br' ||
+            event.source !== iframe.contentWindow) return;
+        const data = event.data;
+        if (!data || typeof data !== 'object' || data.formId !== formId) return;
+        if (data.type === 'kwik-form-height') {
+          const height = Number(data.height);
+          if (Number.isFinite(height) && height > 0 && height <= 20000)
+            iframe.style.height = height + 'px';
+          return;
+        }
+        // Contrato de integração: emitir somente após sucesso confirmado no servidor.
+        if (data.type !== 'kwik-form-submitted' || data.success !== true ||
+            typeof data.submissionId !== 'string' ||
+            !/^[A-Za-z0-9_-]{1,128}$/.test(data.submissionId)) return;
+        const key = 'kwik_lead_' + data.submissionId;
+        if (received.has(key)) return;
+        try { if (sessionStorage.getItem(key)) return; } catch(e) {}
+        received.add(key);
+        try { sessionStorage.setItem(key, '1'); } catch(e) {}
+        window.dataLayer.push({event:'generate_lead', form_id:formId,
+          lead_source:'kwik_form', transaction_id:data.submissionId});
+      });
+      document.addEventListener('click', function(event) {
+        const link = event.target.closest && event.target.closest('a[href]');
+        if (!link) return;
+        let url;
+        try { url = new URL(link.href, location.href); } catch(e) { return; }
+        if (!['https:','http:'].includes(url.protocol) ||
+            !['api.whatsapp.com','wa.me','web.whatsapp.com'].includes(url.hostname)) return;
+        window.dataLayer.push({event:'whatsapp_click',
+          contact_channel:'whatsapp',
+          link_position:link.classList.contains('whatsapp') ? 'floating' :
+            link.closest('footer') ? 'footer' : 'content'});
+        // Não bloquear a abertura do WhatsApp nem enviar telefone/texto/PII ao GTM.
+      });
+    })();
   </script>
   <script>
     (function () {
-      const consentKey = 'instant_cookie_consent_v1';
+      const key = 'instant_cookie_consent_v2';
       const banner = document.getElementById('cookie-banner');
-      const acceptButton = document.getElementById('cookie-accept');
-      const necessaryButton = document.getElementById('cookie-necessary');
-      const settingsButton = document.getElementById('cookie-settings');
-      let trackingLoaded = false;
-
-      function addScript(id, src, async) {
-        if (document.getElementById(id)) return;
-        const script = document.createElement('script');
-        script.id = id;
-        script.src = src;
-        script.async = async !== false;
-        document.head.appendChild(script);
-      }
-
-      function loadTracking() {
-        if (trackingLoaded) return;
-        trackingLoaded = true;
-
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-          ad_storage: 'granted',
-          ad_user_data: 'granted',
-          ad_personalization: 'granted',
-          functionality_storage: 'granted',
-          personalization_storage: 'granted'
-        });
-
-        window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-        addScript('instant-gtm', 'https://www.googletagmanager.com/gtm.js?id=GTM-N4RXQ5D');
-
-        window.clarity = window.clarity || function () {
+      let clarityLoaded = false;
+      function loadClarity() {
+        if (clarityLoaded) return;
+        clarityLoaded = true;
+        window.clarity = window.clarity || function(){
           (window.clarity.q = window.clarity.q || []).push(arguments);
         };
-        addScript('instant-clarity', 'https://www.clarity.ms/tag/v2irre0cb4');
-
-        gtag('js', new Date());
-        gtag('config', 'G-VJL4J90KNT');
-        addScript('instant-ga', 'https://www.googletagmanager.com/gtag/js?id=G-VJL4J90KNT');
+        window.clarity('consentv2', {analytics_Storage:'granted', ad_Storage:'granted'});
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.clarity.ms/tag/v2irre0cb4';
+        document.head.appendChild(script);
       }
-
-      function clearAnalyticsCookies() {
-        const names = ['_ga', '_gid', '_gat', '_gcl_au', '_clck', '_clsk'];
-        const domains = [location.hostname, '.instant.com.br'];
-        document.cookie.split(';').forEach(function (item) {
+      function clearCookies() {
+        const domains = [location.hostname, '.solucoes.instant.com.br', '.instant.com.br'];
+        const paths = ['/', '/kwik', '/kwik/'];
+        document.cookie.split(';').forEach(function(item) {
           const name = item.split('=')[0].trim();
-          if (names.includes(name) || name.indexOf('_ga_') === 0) {
-            domains.forEach(function (domain) {
-              document.cookie = name + '=; Max-Age=0; path=/; domain=' + domain + '; SameSite=Lax';
+          if (!/^(_ga(?:_|$)|_gid$|_gat|_gcl_|_clck$|_clsk$)/.test(name)) return;
+          paths.forEach(function(path) {
+            document.cookie = name+'=; Max-Age=0; path='+path+'; SameSite=Lax';
+            domains.forEach(function(domain) {
+              document.cookie = name+'=; Max-Age=0; path='+path+'; domain='+domain+'; SameSite=Lax';
             });
-            document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
-          }
+          });
         });
       }
-
-      function saveConsent(value) {
-        localStorage.setItem(consentKey, value);
+      function choose(value) {
+        window.instantConsent = value;
+        gtag('consent','update', {
+          analytics_storage:value, ad_storage:value, ad_user_data:value,
+          ad_personalization:value, functionality_storage:'denied',
+          personalization_storage:'denied'
+        });
+        try { localStorage.setItem(key, JSON.stringify({value:value,at:Date.now()})); } catch(e) {}
         banner.hidden = true;
+        // GTM: usar este evento também para tags que precisam de consentimento adicional.
+        window.dataLayer.push({event:'consent_updated', consent_analytics:value,
+          consent_ads:value});
+        if (value === 'granted') loadClarity();
+        else {
+          if (window.clarity) window.clarity('consentv2', {
+            analytics_Storage:'denied',ad_Storage:'denied'});
+          clearCookies();
+          if (clarityLoaded) location.reload();
+        }
       }
-
-      acceptButton.addEventListener('click', function () {
-        saveConsent('granted');
-        loadTracking();
-      });
-
-      necessaryButton.addEventListener('click', function () {
-        const wasLoaded = trackingLoaded;
-        saveConsent('denied');
-        gtag('consent', 'update', {
-          analytics_storage: 'denied',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          functionality_storage: 'denied',
-          personalization_storage: 'denied'
-        });
-        clearAnalyticsCookies();
-        if (wasLoaded) location.reload();
-      });
-
-      settingsButton.addEventListener('click', function () {
+      document.getElementById('cookie-accept').addEventListener('click', function(){choose('granted');});
+      document.getElementById('cookie-necessary').addEventListener('click', function(){choose('denied');});
+      document.getElementById('cookie-settings').addEventListener('click', function(){
         banner.hidden = false;
-        acceptButton.focus();
+        document.getElementById('cookie-necessary').focus();
       });
-
-      const storedConsent = localStorage.getItem(consentKey);
-      if (storedConsent === 'granted') {
-        loadTracking();
-      } else if (storedConsent !== 'denied') {
-        banner.hidden = false;
-      }
+      if (window.instantConsent === 'granted') loadClarity();
+      else if (window.instantConsent !== 'denied') banner.hidden = false;
     })();
   </script>
 </body>
