@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<!-- Consentimento padrão: nenhum serviço analítico é carregado antes da escolha do visitante. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    functionality_storage: 'denied',
+    personalization_storage: 'denied',
+    security_storage: 'granted'
+  });
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webinar Omnichannel de verdade · 18/11 · Instant Solutions</title>
+<meta name="description" content="Webinar gratuito em 18 de novembro, às 15h, no Google Meet: onde as ferramentas fragmentadas falham e o que exigir de uma plataforma integrada de atendimento. Com demonstrações ao vivo e checklist para levar.">
+<style>
+:root{--blue:#0876e5;--ink:#172638;--muted:#647386;--line:#dce6ef;--soft:#f3f7fa;--cyan:#58cdf6;--eyebrow:#5ed1fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif;background:#fff}
+a{text-decoration:none;color:var(--blue)}
+:focus-visible{outline:3px solid #2faee8;outline-offset:3px}
+.shell{width:min(1160px,calc(100% - 40px));margin:auto}
+.btn{display:inline-block;border:0;border-radius:8px;background:linear-gradient(90deg,#0875e5,#1a8fe3);color:#fff;font-weight:800;padding:14px 22px;cursor:pointer;font-family:inherit;font-size:16px;text-align:center}
+.btn:hover{background:#065bb3}
+.eyebrow{margin:0;font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--eyebrow)}
+.eyebrow.dark{color:var(--blue)}
+
+header{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 1px #e3ebf2}
+header .shell{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand-logo{display:block;width:116px;height:auto}
+nav{display:flex;gap:26px;align-items:center}
+nav a.link{color:#32445a;font-size:14px}
+nav .btn{padding:12px 18px;font-size:14px}
+
+.hero{background:radial-gradient(circle at 80% 35%,#183085 0,transparent 30%),linear-gradient(120deg,#070928,#120b46 70%,#07122f);color:#fff}
+.hero .shell{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:72px 0 88px}
+.hero h1{font-size:clamp(56px,7.4vw,96px);line-height:.86;letter-spacing:-.06em;margin:16px 0 26px}
+.hero h1 span{display:block;color:var(--cyan)}
+.hero .lead{font-size:21px;line-height:1.5;color:#e5ebfb;max-width:600px;margin:0 0 28px}
+.when{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 28px;padding:0;list-style:none}
+.when li{padding:9px 14px;border:1px solid #72d7f777;border-radius:10px;background:#101d58e8;color:#dff8ff;font-size:14px;font-weight:700}
+
+.form{background:#fff;color:var(--ink);border-radius:16px;padding:28px;box-shadow:0 24px 60px #06467859;display:grid;gap:14px}
+.form h2{margin:0;font-size:22px;letter-spacing:-.02em}
+.form label{display:grid;gap:6px;font-size:13px;font-weight:700;color:#32445a}
+.form input[type=text],.form input[type=email],.form select{height:46px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:15px Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;width:100%}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form fieldset{margin:0;border:0;padding:0;display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:14px;color:#32445a}
+.form legend{font-size:13px;font-weight:700;padding:0;margin-bottom:6px}
+.form fieldset label{display:flex;gap:6px;align-items:center;font-weight:400;font-size:14px}
+.form .consent{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:12px;line-height:1.45;color:var(--muted)}
+.form .consent input{margin-top:2px}
+.form .btn{height:50px;width:100%}
+.form small{text-align:center;color:var(--muted);font-size:12px}
+
+.strip{background:#201942;color:#fff}
+.strip ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
+.strip li{padding:28px 20px;border-left:1px solid #ffffff25;font-weight:700}
+
+.section{padding:90px 0}
+.soft{background:var(--soft)}
+.heading{text-align:center;max-width:850px;margin:0 auto 50px}
+.heading h2{font-size:clamp(32px,4vw,50px);letter-spacing:-.04em;line-height:1.08;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:16px;padding:27px;background:#fff}
+.card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);line-height:1.65}
+
+.demos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
+.demos article{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 12px 30px #1d4c700d}
+.demos .tag{display:inline-block;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:#e3edff;color:var(--blue);font-size:12px;font-weight:800}
+.demos h3{margin:0 0 6px;color:var(--blue);font-size:18px}
+.demos p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+.takeaway{background:#0d1136;color:#fff;border-radius:16px;padding:36px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.takeaway div{flex:999 1 420px;min-width:0}
+.takeaway h3{margin:10px 0;font-size:28px;letter-spacing:-.03em}
+.takeaway p{margin:0;color:#e5ebfb;line-height:1.6}
+
+.proof{background:#0d1136;color:#fff}
+.proof .shell{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.proof h2{font-size:clamp(32px,4vw,46px);letter-spacing:-.04em;line-height:1.08;margin:10px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stats div{border-top:1px solid #ffffff3c;padding-top:22px}
+.stats b{display:block;color:#55cff8;font-size:28px}
+.stats span{color:#e5ebfb;font-size:15px}
+
+.who .shell{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.who h2{font-size:clamp(28px,3vw,36px);letter-spacing:-.04em;line-height:1.1;margin:10px 0 18px}
+.who p{margin:0 0 14px;color:var(--muted);line-height:1.65}
+.who p b{color:var(--ink)}
+.speaker{display:flex;gap:16px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:16px}
+.speaker .photo{object-fit:cover;width:80px;height:80px;border-radius:50%;background:#e0ebff;flex:none;display:grid;place-items:center;font-size:12px;color:#32445a}
+.speaker h3{margin:0;font-size:19px}
+.speaker p{margin:4px 0 0}
+
+.faq{max-width:860px;margin:auto}
+.faq .heading{margin-bottom:24px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+.faq summary{cursor:pointer;font-weight:800;font-size:17px}
+.faq details p{margin:8px 0 0;color:var(--muted);line-height:1.6}
+
+.contact{background:linear-gradient(135deg,#6dc2f1,#bde5fa);text-align:center}
+.contact h2{font-size:clamp(30px,4vw,46px);letter-spacing:-.04em;line-height:1.08;margin:0 auto 24px;max-width:760px}
+
+.site-footer{background:linear-gradient(110deg,#061331,#0b245d);color:#dce9ff}
+.footer-main{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:center;padding:48px 0 36px}
+.footer-logo-box{display:inline-flex;align-items:center;justify-content:center;width:220px;height:86px;padding:18px 24px;border-radius:17px;background:#fff}
+.footer-logo-box img{width:100%;height:auto}
+.footer-links{display:flex;flex-wrap:wrap;gap:20px;list-style:none;margin:0;padding:0;font-size:13px}
+.footer-links a{color:#e0ebff}
+.footer-links a:hover{text-decoration:underline}
+.footer-legal{border-top:1px solid #ffffff16;padding:18px 0 28px;font-size:12px;color:#9eb3da}
+.footer-legal a{color:#dbe7ff}
+
+.form .msg{display:none;margin:0;padding:12px 14px;border-radius:8px;font-size:14px;line-height:1.45}
+.form .msg.err{display:block;background:#fff1f1;color:#9b1c1c}
+.form .btn[disabled]{opacity:.65;cursor:wait}
+.form-done{display:none;text-align:center;padding:12px 0}
+.form-done h2{margin:0 0 8px}
+.form-done p{margin:0 0 16px;color:var(--muted)}
+.form.sent>*:not(.form-done){display:none}
+.form.sent .form-done{display:block}
+.kwik-frame{display:block;width:100%;height:640px;border:0}
+
+.cookie-banner[hidden]{display:none}
+.cookie-banner{position:fixed;z-index:100;left:18px;right:18px;bottom:18px;max-width:1120px;margin:auto;background:#fff;border:1px solid #d9e1f1;border-radius:16px;box-shadow:0 22px 70px rgba(5,17,57,.28);padding:22px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.cookie-banner strong{display:block;font-size:16px;margin-bottom:6px}
+.cookie-banner p{margin:0;color:#5d6880;font-size:13px;line-height:1.55}
+.cookie-banner p a{text-decoration:underline}
+.cookie-actions{display:flex;gap:9px}
+.cookie-actions button{min-height:44px;padding:0 16px;border-radius:9px;border:1px solid #cbd5e8;background:#fff;color:var(--blue);font:700 13px Arial,Helvetica,sans-serif;cursor:pointer}
+.cookie-actions .accept{border-color:var(--blue);background:var(--blue);color:#fff}
+.cookie-settings{border:0;background:transparent;padding:0;color:#dbe7ff;font:inherit;text-decoration:underline;cursor:pointer}
+
+@media (max-width:900px){
+  nav a.link{display:none}
+  .hero .shell,.proof .shell,.who .shell{grid-template-columns:1fr}
+  .hero .shell{padding:56px 0 64px;gap:36px}
+  .strip ul{grid-template-columns:repeat(2,1fr)}
+  .grid,.demos{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .shell{width:calc(100% - 28px)}
+  .brand-logo{width:100px}
+  nav .btn{padding:10px 14px;font-size:13px}
+  .hero h1{font-size:54px}
+  .hero .lead{font-size:18px}
+  .form{padding:22px}
+  .form .two{grid-template-columns:1fr}
+  .strip ul,.grid,.demos,.stats{grid-template-columns:1fr}
+  .strip li{padding:16px 20px;border-left:0;border-top:1px solid #ffffff25}
+  .section{padding:64px 0}
+  .takeaway{padding:26px}
+  .takeaway .btn,.contact .btn{width:100%}
+  .footer-main{flex-direction:column;align-items:flex-start}
+  .cookie-banner{left:10px;right:10px;bottom:10px;padding:18px 16px;grid-template-columns:1fr;gap:14px}
+  .cookie-actions{display:grid;grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="shell">
+    <a href="https://www.instant.com.br/" aria-label="Instant Solutions"><img class="brand-logo" src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions"></a>
+    <nav aria-label="Navegação da página">
+      <a class="link" href="#conteudo">O que você vai ver</a>
+      <a class="link" href="#palestrantes">Palestrantes</a>
+      <a class="btn" href="#inscricao">Garantir minha vaga</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="shell">
+    <div>
+      <p class="eyebrow">WEBINAR GRATUITO</p>
+      <h1>Omnichannel <span>de verdade</span></h1>
+      <p class="lead">Onde as ferramentas fragmentadas falham e o que exigir de uma plataforma integrada. Em 60 minutos, com demonstrações ao vivo, você sai com um checklist para avaliar qualquer fornecedor.</p>
+      <ul class="when">
+        <li>18 de novembro, quarta</li>
+        <li>15h (horário de Brasília)</li>
+        <li>Google Meet, pelo navegador</li>
+      </ul>
+      <a class="btn" href="#inscricao">Quero me inscrever</a>
+    </div>
+
+    <div class="form" id="inscricao">
+      <h2>Inscreva-se gratuitamente</h2>
+      <p style="margin:0;color:var(--muted);font-size:14px">Preencha para receber o link do Google Meet por e-mail.</p>
+      <div id="kwik-slot"></div>
+      <small>Seus dados seguem a nossa <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</small>
+    </div>
+  </div>
+</section>
+
+<section class="strip" aria-label="Destaques">
+  <ul class="shell">
+    <li>60 minutos ao vivo</li>
+    <li>4 demonstrações</li>
+    <li>Checklist para levar</li>
+    <li>Direto no navegador</li>
+    <li>Gravação para inscritos</li>
+  </ul>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="heading">
+      <p class="eyebrow dark">ONDE AS FERRAMENTAS FRAGMENTADAS FALHAM</p>
+      <h2>Seis sinais de que sua operação está espalhada em ferramentas demais</h2>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Canais em vários fornecedores</h3><p>Cada canal num sistema, cada cliente com um histórico pela metade.</p></div>
+      <div class="card"><h3>Suporte que demora</h3><p>Quando algo para, quem resolve e em quanto tempo?</p></div>
+      <div class="card"><h3>Dados fora do país</h3><p>Onde ficam guardadas as conversas dos seus clientes?</p></div>
+      <div class="card"><h3>WhatsApp sem governança</h3><p>Conversas em celulares da equipe, sem histórico nem auditoria.</p></div>
+      <div class="card"><h3>Custo que só soma</h3><p>Várias licenças e integrações que quebram a cada atualização.</p></div>
+      <div class="card"><h3>Sem visão única do cliente</h3><p>Relatórios espalhados e decisões tomadas no escuro.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="conteudo">
+  <div class="shell">
+    <div class="heading">
+      <p class="eyebrow dark">O QUE VOCÊ VAI VER</p>
+      <h2>O que exigir de uma plataforma integrada, com a prova ao vivo</h2>
+    </div>
+    <div class="demos">
+      <article><span class="tag">Demo ao vivo</span><h3>Canais e atendimento</h3><p>Kwik: todos os canais e o CRM em uma interface.</p></article>
+      <article><span class="tag">Demo ao vivo</span><h3>Voz integrada</h3><p>InstantVoice: telefonia em nuvem, discador e URA.</p></article>
+      <article><span class="tag">Demo ao vivo</span><h3>Governança de WhatsApp</h3><p>Kwik Scout: histórico, auditoria e conformidade.</p></article>
+      <article><span class="tag">Demo ao vivo</span><h3>IA e integração</h3><p>Cortex: IA conectada aos dados da operação.</p></article>
+    </div>
+    <div class="takeaway">
+      <div>
+        <p class="eyebrow">VOCÊ LEVA</p>
+        <h3>Checklist “O que exigir de uma plataforma integrada”</h3>
+        <p>Critérios por categoria para avaliar qualquer fornecedor, mais a opção de um diagnóstico gratuito de 30 minutos com um especialista.</p>
+      </div>
+      <a class="btn" href="#inscricao">Quero o checklist</a>
+    </div>
+  </div>
+</section>
+
+<section class="section proof">
+  <div class="shell">
+    <div>
+      <p class="eyebrow">CONFIANÇA PARA OPERAÇÕES CRÍTICAS</p>
+      <h2>Tecnologia própria. Experiência real.</h2>
+    </div>
+    <div class="stats">
+      <div><b>Tecnologia própria</b><span>desenvolvida no Brasil desde 2003</span></div>
+      <div><b>+20 anos</b><span>atendendo operações de atendimento e vendas</span></div>
+      <div><b>Brasil</b><span>nuvem e suporte no país</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section who" id="palestrantes">
+  <div class="shell">
+    <div>
+      <p class="eyebrow dark">PARA QUEM É</p>
+      <h2>Para quem avalia, influencia ou paga pela plataforma</h2>
+      <p><b>Gestores de Atendimento, TI e Operações</b> que sentem o problema no dia a dia.</p>
+      <p><b>Compliance e Jurídico</b> que precisam de segurança e rastreabilidade.</p>
+      <p><b>Financeiro e Compras</b> que olham custo total e contrato.</p>
+      <p><b>Especialistas de TI</b> que avaliam integrações.</p>
+    </div>
+    <div>
+      <p class="eyebrow dark">PALESTRANTES</p>
+      <div class="speaker"><img class="photo" src="assets/eduardo-sardinha.jpg" alt="Eduardo Sardinha" width="80" height="80" loading="lazy"><div><h3>Eduardo Sardinha</h3><p>Diretor de Novos Negócios, Instant Solutions</p></div></div>
+      <div class="speaker"><img class="photo" src="assets/denis-viana.jpg" alt="Denis Viana" width="80" height="80" loading="lazy"><div><h3>Denis Viana</h3><p>Diretor Técnico, Instant Solutions</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="shell faq">
+    <div class="heading"><p class="eyebrow dark">DÚVIDAS FREQUENTES</p></div>
+    <details><summary>É gratuito?</summary><p>Sim. Basta se inscrever.</p></details>
+    <details><summary>Preciso instalar alguma coisa?</summary><p>Não. O webinar acontece no Google Meet e abre direto no navegador, no computador ou no celular.</p></details>
+    <details><summary>Vai ter gravação?</summary><p>Sim. Todos os inscritos recebem o replay e o checklist.</p></details>
+    <details><summary>Quanto tempo dura?</summary><p>60 minutos, com espaço para perguntas ao vivo.</p></details>
+  </div>
+</section>
+
+<section class="section contact">
+  <div class="shell">
+    <h2>18 de novembro, 15h, no Google Meet. Sua vaga é gratuita.</h2>
+    <a class="btn" href="#inscricao">Garantir minha vaga</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-main">
+    <div class="footer-logo-box"><img src="https://www.instant.com.br/wp-content/uploads/logo_instant.png" alt="Instant Solutions"></div>
+    <ul class="footer-links">
+      <li><a href="https://solucoes.instant.com.br/kwik/?utm_source=lp-webinar&amp;utm_medium=site&amp;utm_campaign=webinar_omnichannel_1811&amp;utm_content=rodape-kwik">Kwik</a></li>
+      <li><a href="https://solucoes.instant.com.br/instant-cloud-voice/?utm_source=lp-webinar&amp;utm_medium=site&amp;utm_campaign=webinar_omnichannel_1811&amp;utm_content=rodape-instantvoice">InstantVoice</a></li>
+      <li><a href="https://scout.kwik.app.br/?utm_source=lp-webinar&amp;utm_medium=site&amp;utm_campaign=webinar_omnichannel_1811&amp;utm_content=rodape-scout">Kwik Scout</a></li>
+      <li><a href="https://cortex.instant.com.br/?utm_source=lp-webinar&amp;utm_medium=site&amp;utm_campaign=webinar_omnichannel_1811&amp;utm_content=rodape-cortex">Cortex</a></li>
+      <li><a href="https://www.instant.com.br/plataforma-omnichannel-de-atendimento/?utm_source=lp-webinar&amp;utm_medium=site&amp;utm_campaign=webinar_omnichannel_1811&amp;utm_content=rodape-artigo">Plataforma omnichannel ou várias ferramentas?</a></li>
+    </ul>
+  </div>
+  <div class="shell footer-legal">Instant Solutions · <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de privacidade</a> · <button class="cookie-settings" id="cookie-settings" type="button">Preferências de cookies</button></div>
+</footer>
+
+<section class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description" hidden>
+  <div>
+    <strong id="cookie-title">Sua privacidade é importante</strong>
+    <p id="cookie-description">Utilizamos cookies necessários para o funcionamento do site. Com sua autorização, também usamos cookies analíticos para entender a navegação e melhorar sua experiência. Consulte nossa <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button id="cookie-necessary" type="button">Somente necessários</button>
+    <button class="accept" id="cookie-accept" type="button">Aceitar analíticos</button>
+  </div>
+</section>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — o que muda de um webinar para outro fica aqui.
+   Um formulário do Kwik por canal, todos na mesma jornada.
+   A página escolhe o formulário pela utm_source / utm_medium do link.
+   ===================================================================== */
+var CONFIG = {
+  ga4: 'G-45TNLSTHSZ',
+  formsKwik: {
+    email:    '01a1a6d3-7ef6-7988-ba2c-245d4652c2cf',
+    whatsapp: '01a1a6d3-cfef-730d-afd1-e8d81485e4f0',
+    social:   '01a1a6d3-f4bf-7a93-bb47-370ea3fb9d24',
+    outros:   '01a1a6d4-016c-7b20-9375-c53a9404da1c'      // também usado para quem chega sem UTM
+  }
+};
+
+/* ---------- Canal de origem (UTM do link, guardada durante a visita) ---------- */
+var CANAL = (function () {
+  var url = new URLSearchParams(window.location.search);
+  var src = (url.get('utm_source') || '') + ' ' + (url.get('utm_medium') || '');
+  var salvo = null;
+  try { salvo = sessionStorage.getItem('instant_canal_webinar'); } catch (e) {}
+  if (!src.trim()) return salvo || 'outros';
+  src = src.toLowerCase();
+  var c = /whats/.test(src) ? 'whatsapp'
+        : /mail/.test(src) ? 'email'
+        : /instagram|facebook|linkedin|social|meta/.test(src) ? 'social'
+        : 'outros';
+  try { sessionStorage.setItem('instant_canal_webinar', c); } catch (e) {}
+  return c;
+})();
+
+/* ---------- Formulário do Kwik do canal ---------- */
+(function () {
+  var id = CONFIG.formsKwik[CANAL] || CONFIG.formsKwik.outros;
+  var slot = document.getElementById('kwik-slot');
+  var f = document.createElement('iframe');
+  f.className = 'kwik-frame';
+  f.id = 'kwik-form-' + id;
+  f.src = 'https://kwik.app.br/form/' + id;
+  f.title = 'Formulário de inscrição no webinar';
+  f.setAttribute('allow', 'clipboard-write');
+  f.loading = 'lazy';
+  slot.appendChild(f);
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://kwik.app.br' || !e.data || e.data.type !== 'kwik-form-height' || e.data.formId !== id) return;
+    var h = Number(e.data.height); if (h > 0) f.style.height = h + 'px';
+  });
+})();
+
+/* ---------- Cookies e GA4 (só carrega com autorização) ---------- */
+(function () {
+  var chave = 'instant_cookie_consent_v1';
+  var banner = document.getElementById('cookie-banner');
+  var carregado = false;
+  function ler() { try { return localStorage.getItem(chave); } catch (e) { return null; } }
+  function salvar(v) { try { localStorage.setItem(chave, v); } catch (e) {} banner.hidden = true; }
+  function carregar() {
+    if (carregado) return; carregado = true;
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    gtag('js', new Date());
+    gtag('config', CONFIG.ga4);
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CONFIG.ga4;
+    document.head.appendChild(s);
+  }
+  document.getElementById('cookie-accept').addEventListener('click', function () { salvar('granted'); carregar(); });
+  document.getElementById('cookie-necessary').addEventListener('click', function () {
+    var estava = carregado; salvar('denied');
+    gtag('consent', 'update', { analytics_storage: 'denied' });
+    if (estava) location.reload();
+  });
+  document.getElementById('cookie-settings').addEventListener('click', function () { banner.hidden = false; });
+  var v = ler();
+  if (v === 'granted') carregar(); else if (v !== 'denied') banner.hidden = false;
+})();
+</script>
+
+</body>
+</html>
