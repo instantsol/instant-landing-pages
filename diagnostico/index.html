@@ -764,6 +764,7 @@ CONFIGURAÇÃO DE CAPTURA DE LEADS
 */
 const LEAD_ENDPOINT = "https://staging-wcc.instantsandbox.net/api/api/public/v1/mail-relay/";
 const SALES_WHATSAPP = "551140636100";
+const UTM = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith("utm_")));
 
 const form = document.getElementById("diagnosticForm");
 const progressBar = document.getElementById("progressBar");
@@ -1017,6 +1018,7 @@ return data;
 }
 
 async function saveLead(payload){
+payload = { ...payload, ...UTM, landing_url: location.href };
 try{
 localStorage.setItem("instant_diagnostic_lead", JSON.stringify(payload));
 }catch(err){
