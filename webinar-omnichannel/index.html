@@ -41,7 +41,7 @@ nav a.link{color:#32445a;font-size:14px}
 nav .btn{padding:12px 18px;font-size:14px}
 
 .hero{background:radial-gradient(circle at 80% 35%,#183085 0,transparent 30%),linear-gradient(120deg,#070928,#120b46 70%,#07122f);color:#fff}
-.hero .shell{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:72px 0 88px}
+.hero .shell{display:grid;grid-template-columns:1fr;gap:50px;align-items:center;padding:72px 0 88px}
 .hero h1{font-size:clamp(56px,7.4vw,96px);line-height:.86;letter-spacing:-.06em;margin:16px 0 26px}
 .hero h1 span{display:block;color:var(--cyan)}
 .hero .lead{font-size:21px;line-height:1.5;color:#e5ebfb;max-width:600px;margin:0 0 28px}
@@ -217,14 +217,7 @@ nav .btn{padding:12px 18px;font-size:14px}
         <li>15h (horário de Brasília)</li>
         <li>Google Meet, pelo navegador</li>
       </ul>
-      <a class="btn" href="#inscricao">Quero me inscrever</a>
-    </div>
-
-    <div class="form" id="inscricao">
-      <h2>Inscreva-se gratuitamente</h2>
-      <p style="margin:0;color:var(--muted);font-size:14px">Preencha para receber o link do Google Meet por e-mail.</p>
-      <div id="kwik-slot"></div>
-      <small>Seus dados seguem a nossa <a href="https://www.instant.com.br/politica-de-privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</small>
+      <a class="btn" href="#replay">Assistir à gravação</a>
     </div>
   </div>
 </section>
@@ -274,7 +267,7 @@ nav .btn{padding:12px 18px;font-size:14px}
         <h3>Checklist “O que exigir de uma plataforma integrada”</h3>
         <p>Critérios por categoria para avaliar qualquer fornecedor, mais a opção de um diagnóstico gratuito de 30 minutos com um especialista.</p>
       </div>
-      <a class="btn" href="#inscricao">Quero o checklist</a>
+      <a class="btn" href="assets/checklist-omnichannel-de-verdade-instant.pdf" download>Baixar o checklist</a>
     </div>
   </div>
 </section>
@@ -321,12 +314,6 @@ nav .btn{padding:12px 18px;font-size:14px}
   </div>
 </section>
 
-<section class="section contact">
-  <div class="shell">
-    <h2>18 de novembro, 15h, no Google Meet. Sua vaga é gratuita.</h2>
-    <a class="btn" href="#inscricao">Garantir minha vaga</a>
-  </div>
-</section>
 </main>
 
 <footer class="site-footer">
@@ -384,24 +371,6 @@ var CANAL = (function () {
         : 'outros';
   try { sessionStorage.setItem('instant_canal_webinar', c); } catch (e) {}
   return c;
-})();
-
-/* ---------- Formulário do Kwik do canal ---------- */
-(function () {
-  var id = CONFIG.formsKwik[CANAL] || CONFIG.formsKwik.outros;
-  var slot = document.getElementById('kwik-slot');
-  var f = document.createElement('iframe');
-  f.className = 'kwik-frame';
-  f.id = 'kwik-form-' + id;
-  f.src = 'https://kwik.app.br/form/' + id;
-  f.title = 'Formulário de inscrição no webinar';
-  f.setAttribute('allow', 'clipboard-write');
-  f.loading = 'lazy';
-  slot.appendChild(f);
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://kwik.app.br' || !e.data || e.data.type !== 'kwik-form-height' || e.data.formId !== id) return;
-    var h = Number(e.data.height); if (h > 0) f.style.height = h + 'px';
-  });
 })();
 
 /* ---------- Cookies e GA4 (só carrega com autorização) ---------- */
